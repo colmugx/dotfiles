@@ -13,6 +13,11 @@ set guifont=Menlo_Regular_for_Powerline_Nerd_Font_Complete
 
 " style
 set background=dark
+set shiftwidth=2
+set tabstop=2
+set expandtab
+set autoindent
+set backspace=2
 
 " filetype
 filetype plugin on

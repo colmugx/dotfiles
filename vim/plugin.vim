@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+  " global
   Plug 'ap/vim-css-color'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
@@ -9,6 +10,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'rakr/vim-one'
   Plug 'vim-airline/vim-airline'
+
+  " language
+  Plug 'pangloss/vim-javascript'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'hail2u/vim-css3-syntax'
 
 call plug#end()
 
