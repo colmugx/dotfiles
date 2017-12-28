@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'hail2u/vim-css3-syntax'
+  Plug 'neovimhaskell/haskell-vim'
   
   " lint
   Plug 'w0rp/ale'
