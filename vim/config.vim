@@ -26,3 +26,4 @@ filetype indent on
 if has('gui_macvim')
   set guioptions-=r
 endif
+

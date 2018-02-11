@@ -10,9 +10,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'rakr/vim-one'
   Plug 'vim-airline/vim-airline'
-  Plug 'scrooloose/nerdtree'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 
   " language
   Plug 'pangloss/vim-javascript'
@@ -35,6 +32,9 @@ call plug#begin('~/.vim/plugged')
   " others
   Plug 'terryma/vim-multiple-cursors'
   Plug 'wakatime/vim-wakatime'
+  Plug 'dyng/ctrlsf.vim'
+  Plug 'Raimondi/delimitMate'
 call plug#end()
 
 source ~/.vim/plugConf.vim
+
