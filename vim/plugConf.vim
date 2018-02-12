@@ -29,4 +29,14 @@ let g:ale_fixers = {
   \ 'javascript': ['eslint']
   \ }
 
+" supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
+" tagbar
+nnoremap <leader>tt :TagbarToggle<Cr>
+
+" vim-trailing-whitespace
+nmap <leader><space> :FixWhitespace<cr>
+
+" jsdoc
+nmap <leader>ad :JsDoc<CR>
