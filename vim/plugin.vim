@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'rakr/vim-one'
   Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
   " language
   Plug 'pangloss/vim-javascript'
@@ -25,7 +26,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'ternjs/tern_for_vim'
   Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
-
+  Plug 'carlitux/deoplete-ternjs'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
   "snippets
   Plug 'VimSnippets/vim-snippets'
   Plug 'VimSnippets/vim-react-snippets'
@@ -39,6 +47,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Raimondi/delimitMate'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'alvan/vim-closetag'
+  Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 source ~/.vim/plugConf.vim

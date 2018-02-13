@@ -4,7 +4,7 @@ nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
 
 " Color & Scheme
-let g:airline_theme='one'
+let g:airline_theme='onedark'
 colorscheme one
 
 let g:airline_powerline_fonts = 1
@@ -15,7 +15,20 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:rainbow_active=1
 
 " nerdtree
-nnoremap <Leader>ft :NERDTree<Cr>
+nnoremap <Leader>ft :NERDTreeToggle<Cr>
+let NERDTreeShowHidden=1
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 
 " ale
 let g:ale_linter_aliases = {
@@ -40,3 +53,6 @@ nmap <leader><space> :FixWhitespace<cr>
 
 " jsdoc
 nmap <leader>ad :JsDoc<CR>
+
+" complete
+let g:deoplete#enable_at_startup = 1
