@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+
   "snippets
   Plug 'VimSnippets/vim-snippets'
   Plug 'VimSnippets/vim-react-snippets'
@@ -48,6 +49,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'alvan/vim-closetag'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 source ~/.vim/plugConf.vim
