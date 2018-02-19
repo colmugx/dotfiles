@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rakr/vim-one'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'thaerkh/vim-workspace'
 
   " language
   Plug 'pangloss/vim-javascript'
