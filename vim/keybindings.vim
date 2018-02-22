@@ -7,5 +7,8 @@ nnoremap <Leader>m :bp<Cr>
 nnoremap <Leader>bd :bd<Cr>
 nnoremap <Leader>bb :Buffers<Cr>
 
+" window
+nnoremap <Leader>bw :Windows<Cr>
+
 " edit
 nnoremap <c-a> ggVG

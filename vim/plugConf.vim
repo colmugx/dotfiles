@@ -52,7 +52,7 @@ nnoremap <leader>tt :TagbarToggle<Cr>
 nmap <leader><space> :FixWhitespace<cr>
 
 " jsdoc
-imap /** :JsDoc<CR>
+nmap /** :JsDoc<CR>
 
 " complete
 let g:deoplete#enable_at_startup = 1
