@@ -56,3 +56,11 @@ nmap /** :JsDoc<CR>
 
 " complete
 let g:deoplete#enable_at_startup = 1
+
+" complete (lsp)
+let g:LanguageClient_serverCommands = {
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'javascript.jsx': ['javascript-typescript-stdio'],
+  \ 'vue': ['vls']
+  \ }
+
