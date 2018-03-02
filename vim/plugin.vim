@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
     \ 'do': 'sh install.sh',
     \ }
   "snippets
+  Plug 'SirVer/ultisnips'
   Plug 'VimSnippets/vim-snippets'
   Plug 'VimSnippets/vim-react-snippets'
   Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'typescript']}

@@ -54,13 +54,26 @@ nmap <leader><space> :FixWhitespace<cr>
 " jsdoc
 nmap /** :JsDoc<CR>
 
+" ultisnips
+let g:UltiSnipsExpandTrigger="<m-/>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-m>"
+
 " complete
 let g:deoplete#enable_at_startup = 1
 
 " complete (lsp)
 let g:LanguageClient_serverCommands = {
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'javascript.jsx': ['javascript-typescript-stdio'],
-  \ 'vue': ['vls']
+  \ 'vue': ['vls'],
+  \ 'vue.html.javascript.css': ['vls']
   \ }
+nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
+nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
+nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
+
+" vue
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+
+" javascript
+let javascript_enable_domhtmlcss = 1
 
