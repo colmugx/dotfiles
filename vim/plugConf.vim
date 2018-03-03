@@ -55,7 +55,7 @@ nmap <leader><space> :FixWhitespace<cr>
 nmap /** :JsDoc<CR>
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<m-/>"
+let g:UltiSnipsExpandTrigger="<M-/>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-m>"
 
@@ -77,3 +77,5 @@ autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 " javascript
 let javascript_enable_domhtmlcss = 1
 
+" closetag
+let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.vue'

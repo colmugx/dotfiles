@@ -52,7 +52,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'wakatime/vim-wakatime'
   Plug 'dyng/ctrlsf.vim'
   Plug 'majutsushi/tagbar'
-  Plug 'Raimondi/delimitMate'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'alvan/vim-closetag'
   Plug 'editorconfig/editorconfig-vim'
