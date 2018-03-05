@@ -12,3 +12,4 @@ nnoremap <Leader>bw :Windows<Cr>
 
 " edit
 nnoremap <c-a> ggVG
+nnoremap <D-/> <leader>c<space>

@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdcommenter'
   Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
