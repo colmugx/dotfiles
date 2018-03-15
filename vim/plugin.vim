@@ -21,6 +21,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'hail2u/vim-css3-syntax'
   Plug 'neovimhaskell/haskell-vim'
   Plug 'posva/vim-vue'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'mhartington/nvim-typescript'
 
   " lint
   Plug 'w0rp/ale'

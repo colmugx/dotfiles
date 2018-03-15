@@ -36,11 +36,14 @@ let g:ale_linter_aliases = {
   \ 'jsx': 'javascript'
   \ }
 let g:ale_linters = {
-  \ 'javascript': ['eslint']
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['tslint']
   \ }
 let g:ale_fixers = {
-  \ 'javascript': ['eslint']
+  \ 'javascript': ['eslint'],
   \ }
+let g:ale_fix_on_save = 1
+nmap <silent> <Leader>f <Plug>(ale_fix)
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -71,11 +74,21 @@ nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
 nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
 
-" vue
+" autocmd(plugin)
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.tsx
 
 " javascript
 let javascript_enable_domhtmlcss = 1
 
 " closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.vue'
+
+" nerdcommenter
+let g:NERDSpaceDelims=1
+let g:NERDDefaultNesting = 1
+let g:NERDCustomDelimiters = {
+  \ 'clojure': {
+    \ 'left': ';;'
+  \ }
+\ }
