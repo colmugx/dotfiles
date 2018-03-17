@@ -16,3 +16,4 @@ nnoremap <Leader>ff :Files<Cr>
 " edit
 nnoremap <c-a> ggVG
 nnoremap <D-/> <leader>c<space>
+nnoremap F /<C-r><C-w><Cr>

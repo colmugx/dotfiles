@@ -57,6 +57,9 @@ nmap <leader><space> :FixWhitespace<cr>
 " jsdoc
 nmap /** :JsDoc<CR>
 
+" emmet
+imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
+
 " ultisnips
 let g:UltiSnipsExpandTrigger="<M-/>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
