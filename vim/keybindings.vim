@@ -5,13 +5,6 @@ inoremap <c-space> <c-n>
 nnoremap <Leader>n :bn<Cr>
 nnoremap <Leader>m :bp<Cr>
 nnoremap <Leader>bd :bd<Cr>
-nnoremap <Leader>bb :Buffers<Cr>
-
-" window
-nnoremap <Leader>bw :Windows<Cr>
-
-" file
-nnoremap <Leader>ff :Files<Cr>
 
 " edit
 nnoremap <c-a> ggVG

@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'thaerkh/vim-workspace'
+  Plug 'tpope/vim-surround'
 
   " language
   Plug 'pangloss/vim-javascript'

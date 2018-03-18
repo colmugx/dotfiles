@@ -95,3 +95,12 @@ let g:NERDCustomDelimiters = {
     \ 'left': ';;'
   \ }
 \ }
+
+" vim-surround
+nmap <silent> ,, ysiw
+nmap <silent> ,. yssb
+
+" fzf
+nnoremap <leader>bw :Windows<Cr>
+nnoremap <leader>bb :Buffers<Cr>
+nnoremap <leader>bf :Files<Cr>
