@@ -10,3 +10,4 @@ nnoremap <Leader>bd :bd<Cr>
 nnoremap <c-a> ggVG
 nnoremap <D-/> <leader>c<space>
 nnoremap F /<C-r><C-w><Cr>
+nnoremap <C-?> :noh<Cr>
