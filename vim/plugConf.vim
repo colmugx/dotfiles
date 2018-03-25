@@ -59,6 +59,11 @@ nmap /** :JsDoc<CR>
 
 " emmet
 imap <C-e> <Space><BS><plug>(emmet-expand-abbr)
+let g:user_emmet_settings = {
+  \ 'javascript.jsx' : {
+  \   'extends' : 'jsx',
+  \  },
+  \ }
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<M-/>"
