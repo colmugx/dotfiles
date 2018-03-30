@@ -66,12 +66,13 @@ let g:user_emmet_settings = {
   \ }
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<M-/>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-m>"
 
-" complete
+" complete (deoplete)
 let g:deoplete#enable_at_startup = 1
+" let g:tern#command = ["tern"]
+" let g:arguments = ["--persistent"]
 
 " complete (lsp)
 let g:LanguageClient_serverCommands = {
@@ -85,9 +86,15 @@ nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
 " autocmd(plugin)
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.tsx
+autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript.jsx
+autocmd BufRead,BufNewFile *.styl setlocal filetype=stylus.css
 
 " javascript
 let javascript_enable_domhtmlcss = 1
+
+" jsx-pretty
+let g:vim_jsx_pretty_enable_jsx_highlight = 1
+let g:vim_jsx_pretty_colorful_config = 1
 
 " closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.vue'

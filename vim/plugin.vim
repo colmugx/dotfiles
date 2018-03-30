@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'posva/vim-vue'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'mhartington/nvim-typescript'
+  Plug 'wavded/vim-stylus'
 
   " lint
   Plug 'w0rp/ale'
@@ -47,9 +48,9 @@ call plug#begin('~/.vim/plugged')
     \ }
   "snippets
   Plug 'SirVer/ultisnips'
-  Plug 'VimSnippets/vim-snippets'
-  Plug 'VimSnippets/vim-react-snippets'
+  Plug 'VimSnippets/vim-web-snippets'
   Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'typescript']}
+  Plug 'styled-components/vim-styled-components'
 
   " others
   Plug 'terryma/vim-multiple-cursors'
