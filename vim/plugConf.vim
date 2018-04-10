@@ -41,6 +41,7 @@ let g:ale_linters = {
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
+  \ 'typescript': ['tslint']
   \ }
 let g:ale_fix_on_save = 1
 nmap <silent> <Leader>f <Plug>(ale_fix)
@@ -71,8 +72,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-m>"
 
 " complete (deoplete)
 let g:deoplete#enable_at_startup = 1
-" let g:tern#command = ["tern"]
-" let g:arguments = ["--persistent"]
+let g:deoplete#max_menu_width = 60
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#sources#ternjs#types = 1
+
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
 
 " complete (lsp)
 let g:LanguageClient_serverCommands = {
