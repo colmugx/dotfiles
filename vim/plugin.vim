@@ -24,7 +24,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'posva/vim-vue'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'mhartington/nvim-typescript'
-  Plug 'dart-lang/dart-vim-plugin'
   Plug 'ElmCast/elm-vim'
   Plug 'wavded/vim-stylus'
 

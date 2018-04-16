@@ -84,6 +84,7 @@ let g:LanguageClient_serverCommands = {
   \ 'vue': ['vls'],
   \ 'vue.html.javascript.css': ['vls']
   \ }
+let g:LanguageClient_autoStart = 1
 nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
 nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
