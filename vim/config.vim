@@ -6,6 +6,9 @@ set relativenumber
 syntax on
 syntax enable
 
+" line
+set cursorline
+
 " font
 set encoding=utf-8
 set fileencodings=utf-8,gbk,gb2312

@@ -5,7 +5,7 @@ nnoremap <Leader>pu :PlugUpdate<Cr>
 
 " Color & Scheme
 let g:airline_theme='onedark'
-colorscheme one
+colorscheme onedark
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1

@@ -9,11 +9,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'rakr/vim-one'
+  Plug 'colmugx/onedark.vim'
+  Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'thaerkh/vim-workspace'
-  Plug 'tpope/vim-surround'
 
   " language
   Plug 'pangloss/vim-javascript'
@@ -26,6 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhartington/nvim-typescript'
   Plug 'ElmCast/elm-vim'
   Plug 'wavded/vim-stylus'
+  Plug 'styled-components/vim-styled-components'
 
   " lint
   Plug 'w0rp/ale'
@@ -52,8 +52,6 @@ call plug#begin('~/.vim/plugged')
   "snippets
   Plug 'SirVer/ultisnips'
   Plug 'VimSnippets/vim-web-snippets'
-  Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'typescript']}
-  Plug 'styled-components/vim-styled-components'
 
   " others
   Plug 'terryma/vim-multiple-cursors'
@@ -61,11 +59,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'dyng/ctrlsf.vim'
   Plug 'majutsushi/tagbar'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'thaerkh/vim-workspace'
+  Plug 'tpope/vim-surround'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'alvan/vim-closetag'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'typescript']}
 call plug#end()
 
 source ~/.vim/plugConf.vim
