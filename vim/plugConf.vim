@@ -81,8 +81,8 @@ let g:tern#arguments = ["--persistent"]
 
 " complete (lsp)
 let g:LanguageClient_serverCommands = {
-  \ 'vue': ['vls'],
-  \ 'vue.html.javascript.css': ['vls']
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'typescript.tsx': ['javascript-typescript-stdio']
   \ }
 let g:LanguageClient_autoStart = 1
 nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
@@ -90,7 +90,6 @@ nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
 
 " autocmd(plugin)
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.tsx
 autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript.jsx
 autocmd BufRead,BufNewFile *.styl setlocal filetype=stylus.css
@@ -116,7 +115,7 @@ let g:NERDCustomDelimiters = {
 
 " vim-surround
 nmap <silent> ,, ysiw
-nmap <silent> ,. yssb
+nmap <silent> ,. cs
 
 " fzf
 nnoremap <leader>bw :Windows<Cr>
