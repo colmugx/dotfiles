@@ -33,15 +33,18 @@ let g:NERDTreeIndicatorMapCustom = {
 " ale
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
-  \ 'jsx': 'javascript'
+  \ 'jsx': 'javascript',
+  \ 'typescript.jsx': 'typescript'
   \ }
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
-  \ 'typescript': ['tslint']
+  \ 'typescript': ['tslint'],
+  \ 'scss': ['stylelint']
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
-  \ 'typescript': ['tslint']
+  \ 'typescript': ['tslint'],
+  \ 'scss': ['stylelint']
   \ }
 let g:ale_fix_on_save = 1
 nmap <silent> <Leader>f <Plug>(ale_fix)
@@ -82,7 +85,7 @@ let g:tern#arguments = ["--persistent"]
 " complete (lsp)
 let g:LanguageClient_serverCommands = {
   \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'typescript.tsx': ['javascript-typescript-stdio']
+  \ 'typescript.jsx': ['javascript-typescript-stdio']
   \ }
 let g:LanguageClient_autoStart = 1
 nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
@@ -90,7 +93,7 @@ nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
 
 " autocmd(plugin)
-autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.tsx
+autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.jsx
 autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript.jsx
 autocmd BufRead,BufNewFile *.styl setlocal filetype=stylus.css
 
