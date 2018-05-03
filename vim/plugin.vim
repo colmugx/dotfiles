@@ -42,11 +42,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  " Language Server Protocol
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'sh install.sh',
-    \ }
+  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
 
   "snippets
   Plug 'SirVer/ultisnips'

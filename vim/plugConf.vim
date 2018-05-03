@@ -42,9 +42,9 @@ let g:ale_linters = {
   \ 'scss': ['stylelint']
   \ }
 let g:ale_fixers = {
-  \ 'javascript': ['eslint'],
-  \ 'typescript': ['tslint'],
-  \ 'scss': ['stylelint']
+  \ 'javascript': 'eslint',
+  \ 'typescript': 'tslint',
+  \ 'scss': 'stylelint'
   \ }
 let g:ale_fix_on_save = 1
 nmap <silent> <Leader>f <Plug>(ale_fix)
@@ -80,13 +80,8 @@ let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#sources#ternjs#types = 1
 
 let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
+" let g:tern#arguments = ["--persistent"]
 
-" complete (lsp)
-let g:LanguageClient_serverCommands = {
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'typescript.jsx': ['javascript-typescript-stdio']
-  \ }
 let g:LanguageClient_autoStart = 1
 nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
 nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
