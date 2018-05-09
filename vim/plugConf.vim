@@ -39,11 +39,11 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
-  \ 'scss': ['stylelint']
+  \ 'scss': 'stylelint'
   \ }
 let g:ale_fixers = {
-  \ 'javascript': 'eslint',
-  \ 'typescript': 'tslint',
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['prettier', 'tslint'],
   \ 'scss': 'stylelint'
   \ }
 let g:ale_fix_on_save = 1
@@ -95,6 +95,9 @@ autocmd BufRead,BufNewFile *.styl setlocal filetype=stylus.css
 " javascript
 let javascript_enable_domhtmlcss = 1
 
+" javascript-libraries-syntax
+let g:used_javascript_libs = 'underscore,jquery,react'
+
 " jsx-pretty
 let g:vim_jsx_pretty_enable_jsx_highlight = 1
 let g:vim_jsx_pretty_colorful_config = 1
@@ -119,3 +122,6 @@ nmap <silent> ,. cs
 nnoremap <leader>bw :Windows<Cr>
 nnoremap <leader>bb :Buffers<Cr>
 nnoremap <leader>bf :Files<Cr>
+
+" winresizer
+let g:winresizer_start_key = '<Leader>r'

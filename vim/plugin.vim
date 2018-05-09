@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
   " global
-  Plug 'ap/vim-css-color'
   Plug 'luochen1990/rainbow'
   Plug 'scrooloose/nerdtree'
   Plug 'scrooloose/nerdcommenter'
@@ -13,14 +12,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'simeji/winresizer'
 
   " language
+  Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'neovimhaskell/haskell-vim'
-  Plug 'posva/vim-vue'
+  Plug 'ap/vim-css-color'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'ElmCast/elm-vim'
   Plug 'wavded/vim-stylus'
