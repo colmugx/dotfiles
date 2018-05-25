@@ -43,13 +43,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
+  Plug 'mhartington/nvim-typescript'
 
   "snippets
   Plug 'SirVer/ultisnips'
   Plug 'VimSnippets/vim-web-snippets'
 
   " others
+  Plug 'csscomb/vim-csscomb'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'wakatime/vim-wakatime'
   Plug 'dyng/ctrlsf.vim'

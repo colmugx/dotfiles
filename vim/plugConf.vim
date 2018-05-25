@@ -34,20 +34,21 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript',
-  \ 'typescript.jsx': 'typescript'
+  \ 'react.typescript': 'typescript'
   \ }
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
-  \ 'scss': 'stylelint'
+  \ 'scss': ['stylelint']
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['prettier', 'tslint'],
-  \ 'scss': 'stylelint'
+  \ 'scss': ['stylelint']
   \ }
 let g:ale_fix_on_save = 1
-nmap <silent> <Leader>f <Plug>(ale_fix)
+let g:ale_sign_column_always = 1
+nmap <silent> <Leader>af <Plug>(ale_fix)
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -88,7 +89,7 @@ nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
 
 " autocmd(plugin)
-autocmd BufRead,BufNewFile *.tsx setlocal filetype=typescript.jsx
+autocmd BufRead,BufNewFile *.tsx setlocal filetype=react.typescript
 autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript.jsx
 autocmd BufRead,BufNewFile *.styl setlocal filetype=stylus.css
 
