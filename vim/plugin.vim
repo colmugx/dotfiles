@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'simeji/winresizer'
+  Plug 'vim-scripts/BufOnly.vim'
 
   " language
   Plug 'othree/javascript-libraries-syntax.vim'
@@ -43,7 +44,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  Plug 'mhartington/nvim-typescript'
+  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
   "snippets
   Plug 'SirVer/ultisnips'
@@ -59,6 +60,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'thaerkh/vim-workspace'
   Plug 'tpope/vim-surround'
   Plug 'bronson/vim-trailing-whitespace'
+  Plug 'easymotion/vim-easymotion'
   Plug 'alvan/vim-closetag'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
