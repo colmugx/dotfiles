@@ -39,12 +39,14 @@ let g:ale_linter_aliases = {
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
-  \ 'scss': ['stylelint']
+  \ 'scss': ['stylelint'],
+  \ 'elm': ['elm-make']
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['prettier', 'tslint'],
-  \ 'scss': ['prettier', 'stylelint']
+  \ 'scss': ['prettier', 'stylelint'],
+  \ 'elm': ['elm-make']
   \ }
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
@@ -57,7 +59,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 nnoremap <leader>tt :TagbarToggle<Cr>
 
 " vim-trailing-whitespace
-nmap <leader><space> :FixWhitespace<cr>
+nmap <silent> <leader><space><space> :FixWhitespace<cr>
 
 " jsdoc
 nmap /** :JsDoc<CR>
