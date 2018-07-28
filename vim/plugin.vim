@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+  Plug 'pbogut/deoplete-elm'
 
   "snippets
   Plug 'SirVer/ultisnips'

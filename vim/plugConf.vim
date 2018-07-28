@@ -40,13 +40,13 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
   \ 'scss': ['stylelint'],
-  \ 'elm': ['elm-make']
+  \ 'elm': ['elm-format']
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['prettier', 'tslint'],
   \ 'scss': ['prettier', 'stylelint'],
-  \ 'elm': ['elm-make']
+  \ 'elm': ['elm-format']
   \ }
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
@@ -73,8 +73,8 @@ let g:user_emmet_settings = {
   \ }
 
 " ultisnips
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-m>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " complete (deoplete)
 let g:deoplete#enable_at_startup = 1
