@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'neovimhaskell/haskell-vim'
+  Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
   Plug 'ap/vim-css-color'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'ElmCast/elm-vim'
@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
   Plug 'pbogut/deoplete-elm'
+  Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
   "snippets
   Plug 'SirVer/ultisnips'
