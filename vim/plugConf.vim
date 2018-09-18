@@ -40,13 +40,15 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
   \ 'scss': ['stylelint'],
-  \ 'elm': ['elm-format']
+  \ 'elm': ['elm-format'],
+  \ 'python': ['flake8']
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['prettier', 'tslint'],
   \ 'scss': ['prettier', 'stylelint'],
-  \ 'elm': ['elm-format']
+  \ 'elm': ['elm-format'],
+  \ 'python': ['yapf']
   \ }
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
@@ -128,3 +130,6 @@ nnoremap <leader>bf :Files<Cr>
 
 " winresizer
 let g:winresizer_start_key = '<Leader>r'
+
+" python
+let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
