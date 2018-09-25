@@ -84,13 +84,20 @@ let g:deoplete#max_menu_width = 60
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#sources#ternjs#types = 1
 
+" tern
 let g:tern#command = ["tern"]
 " let g:tern#arguments = ["--persistent"]
 
+" LanguageClient
 let g:LanguageClient_autoStart = 1
 nnoremap <leader>lh :call LanguageClient_textDocument_hover()<CR>
 nnoremap <leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient_textDocument_rename()<CR>
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+
+let g:LanguageClient_serverCommands = {
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ }
 
 " autocmd(plugin)
 autocmd BufRead,BufNewFile *.tsx setlocal filetype=react.typescript

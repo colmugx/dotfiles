@@ -41,7 +41,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'ternjs/tern_for_vim'
   Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
-  Plug 'carlitux/deoplete-ternjs'
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -50,9 +49,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
-  Plug 'pbogut/deoplete-elm'
+  Plug 'carlitux/deoplete-ternjs'
   Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 
   "snippets
   Plug 'SirVer/ultisnips'
@@ -63,7 +66,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'wakatime/vim-wakatime'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'majutsushi/tagbar'
   Plug 'jiangmiao/auto-pairs'
   Plug 'thaerkh/vim-workspace'
   Plug 'tpope/vim-surround'
