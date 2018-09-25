@@ -8,10 +8,10 @@ call plug#begin('~/.vim/plugged')
 
   " global
   Plug 'luochen1990/rainbow'
-  Plug 'scrooloose/nerdtree'
   Plug 'scrooloose/nerdcommenter'
   Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
+  Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'colmugx/onedark.vim'
@@ -25,17 +25,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
   Plug 'ap/vim-css-color'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'ElmCast/elm-vim'
   Plug 'wavded/vim-stylus'
-  Plug 'styled-components/vim-styled-components'
+  Plug 'dag/vim-fish'
 
   " lint
   Plug 'w0rp/ale'
+  Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 
   " complete
   Plug 'ternjs/tern_for_vim'
