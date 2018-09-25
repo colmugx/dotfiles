@@ -3,6 +3,7 @@ set -U fish_prompt_pwd_dir_length 0
 
 function fish_prompt --description 'Write out the prompt'
 	set -l last_status $status
+    echo
     # PWD
     set_color $fish_color_cwd
     echo -n (prompt_pwd)
