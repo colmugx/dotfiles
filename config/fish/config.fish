@@ -1,5 +1,7 @@
 thefuck --alias | source
 set -U fish_prompt_pwd_dir_length 0
+set -gx EDITOR 'nvim'
+source .dotfiles/.config/fish/paths.fish
 
 function fish_prompt --description 'Write out the prompt'
 	set -l last_status $status

@@ -9,7 +9,7 @@ if [ ! -d $HOME/.config ]; then
   mkdir -p $HOME/.config
 fi
 
-for config in $DOTFILES/.config/*; do
+for config in $DOTFILES/config/*; do
   filename="$(basename $config)"
   target="$HOME/.config/$filename"
   if [ -e $target ]; then

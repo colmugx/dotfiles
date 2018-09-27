@@ -1,4 +1,4 @@
-.config/fish/fishd.*
+*/fish/fishd.*
 .DS_Store
 /vim/autoload/
 /vim/plugged/
