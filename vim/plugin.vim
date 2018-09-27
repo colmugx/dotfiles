@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ElmCast/elm-vim'
   Plug 'wavded/vim-stylus'
   Plug 'dag/vim-fish'
+  Plug 'rust-lang/rust.vim'
 
   " lint
   Plug 'w0rp/ale'
