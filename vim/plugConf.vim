@@ -34,21 +34,21 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:ale_linter_aliases = {
   \ 'javascript.jsx': 'javascript',
   \ 'jsx': 'javascript',
-  \ 'react.typescript': 'typescript'
+  \ 'react.typescript': 'typescript',
   \ }
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['tslint'],
   \ 'scss': ['stylelint'],
   \ 'elm': ['elm-format'],
-  \ 'python': ['flake8']
   \ }
 let g:ale_fixers = {
   \ 'javascript': ['eslint'],
   \ 'typescript': ['prettier', 'tslint'],
   \ 'scss': ['prettier', 'stylelint'],
   \ 'elm': ['elm-format'],
-  \ 'python': ['yapf']
+  \ 'python': ['yapf'],
+  \ 'rust': ['rustfmt']
   \ }
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
