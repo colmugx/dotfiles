@@ -2,37 +2,40 @@
 
 DOTFILES=$HOME/.dotfiles
 
-echo -e "\nInstalling to ~/.config"
-echo "=============================="
-if [ ! -d $HOME/.config ]; then
-  echo "Creating ~/.config"
-  mkdir -p $HOME/.config
+clear
+echo
+echo "==============================================="
+echo '             .__
+  ____  ____ |  |   _____  __ __  _______  ___
+_/ ___\/  _ \|  |  /     \|  |  \/ ___\  \/  /
+\  \__(  <_> )  |_|  Y Y  \  |  / /_/  >    <
+ \___  >____/|____/__|_|  /____/\___  /__/\_ \
+     \/                 \/     /_____/      \/'
+echo "==============================================="
+echo
+
+echo "[0]: all"
+echo "[1]: develop environment"
+
+read -p "press number (default=[0]):" selected
+
+if [ -z "${selected}" ];then
+	selected=0
 fi
 
-for config in $DOTFILES/config/*; do
-  filename="$(basename $config)"
-  target="$HOME/.config/$filename"
-  if [ -e $target ]; then
-    echo "$target already exists... Skipping."
-  else
-    echo "Creating symlink for $config"
-    ln -s $config $target
-  fi
-done
+echo -e "\n======================"
+echo "Installing Dotfiles..."
+echo -e "======================\n\n"
 
 
-echo -e "\nCreating vim symlinks"
-echo "=============================="
-VIMFILES=( "$HOME/.vim:$DOTFILES/vim"
-           "$HOME/.vimrc:$DOTFILES/vim/init.vim")
+case $selected in
+  0)
+    source $DOTFILES/build/dev.sh
+  ;;
+  1)
+    source $DOTFILES/build/dev.sh
+  ;;
+  *)
+    echo "Illegal option!"
+esac
 
-for file in "${VIMFILES[@]}"; do
-  KEY=${file%%:*}
-  VALUE=${file#*:}
-  if [ -e ${KEY} ]; then
-    echo "${KEY} already exists... skipping."
-  else
-    echo "Creating symlink for $KEY"
-    ln -s ${VALUE} ${KEY}
-  fi
-done
