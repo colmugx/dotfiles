@@ -16,6 +16,7 @@ echo
 
 echo "[0]: all"
 echo "[1]: develop environment"
+echo "[2]: Homebrew (only MacOS)"
 
 read -p "press number (default=[0]):" selected
 
@@ -31,9 +32,13 @@ echo -e "======================\n\n"
 case $selected in
   0)
     source $DOTFILES/build/dev.sh
+    source $DOTFILES/build/brew.sh
   ;;
   1)
     source $DOTFILES/build/dev.sh
+  ;;
+  2)
+    source $DOTFILES/build/brew.sh
   ;;
   *)
     echo "Illegal option!"
