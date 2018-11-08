@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'wavded/vim-stylus'
   Plug 'dag/vim-fish'
   Plug 'rust-lang/rust.vim'
+  Plug 'jparise/vim-graphql'
 
   " lint
   Plug 'w0rp/ale'
