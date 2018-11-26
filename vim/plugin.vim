@@ -75,8 +75,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
   Plug 'alvan/vim-closetag'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+  Plug 'Shougo/denite.nvim'
   Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'typescript']}
 call plug#end()
 

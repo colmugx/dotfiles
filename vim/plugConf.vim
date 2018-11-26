@@ -131,10 +131,12 @@ let g:NERDCustomDelimiters = {
 nmap <silent> ,, ysiw
 nmap <silent> ,. cs
 
-" fzf
-nnoremap <leader>bw :Windows<Cr>
-nnoremap <leader>bb :Buffers<Cr>
-nnoremap <leader>bf :Files<Cr>
+" denite
+nnoremap <silent> <leader>bw :<C-u>Denite window<Cr>
+nnoremap <silent> <leader>bb :<C-u>Denite buffer<Cr>
+nnoremap <silent> <leader>bf :<C-u>Denite -highlight-matched-char=None file/rec<Cr>
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 " winresizer
 let g:winresizer_start_key = '<Leader>r'
