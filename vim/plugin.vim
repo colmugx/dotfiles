@@ -40,7 +40,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 
   " complete
-  Plug 'ternjs/tern_for_vim'
   Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
   if has('nvim')
@@ -51,7 +50,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  Plug 'carlitux/deoplete-ternjs'
   Plug 'zchee/deoplete-jedi', { 'for': 'python' }
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
