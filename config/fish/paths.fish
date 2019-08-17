@@ -15,3 +15,7 @@ if test -d /sdk
   set -gx PATH /sdk/tools /sdk/platform-tools $PATH
 end
 
+# pkg-config
+if test -d /usr/local/opt/libressl
+  set -gx PKG_CONFIG_PATH "/usr/local/opt/libressl/lib/pkgconfig"
+end
