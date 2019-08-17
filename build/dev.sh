@@ -3,6 +3,10 @@ DOTFILES=$HOME/.dotfiles
 echo "Now Installing Develop Environment..."
 
 echo "====================================="
+echo -e "Configure tmux\n"
+ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+
+echo "====================================="
 echo -e "Installing to ~/.config\n\n"
 if [ ! -d $HOME/.config ]; then
   echo "Creating ~/.config"
