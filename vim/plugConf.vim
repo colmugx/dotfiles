@@ -119,10 +119,10 @@ nmap <silent> ,, ysiw
 nmap <silent> ,. cs
 
 " denite
-nnoremap <silent> <leader>bb :<C-u>Denite buffer<Cr>
-nnoremap <silent> <leader>bf :<C-u>Denite file/rec<Cr>
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+" nnoremap <silent> <leader>bb :<C-u>Denite buffer<Cr>
+" nnoremap <silent> <leader>bf :<C-u>Denite file/rec<Cr>
+" call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+" call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 " winresizer
 let g:winresizer_start_key = '<Leader>r'
