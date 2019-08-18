@@ -4,7 +4,11 @@ echo "Now Installing Develop Environment..."
 
 echo "====================================="
 echo -e "Configure tmux\n"
-ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+if [ -e $HOME/.tmux.conf ]; then
+  echo "exist... Skipping"
+else
+  ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+fi
 
 echo "====================================="
 echo -e "Installing to ~/.config\n\n"
@@ -17,7 +21,7 @@ for config in $DOTFILES/config/*; do
   filename="$(basename $config)"
   target="$HOME/.config/$filename"
   if [ -e $target ]; then
-    echo "$target already exists... Skipping."
+    echo "$target already exists... skipping."
   else
     echo "Creating symlink for $config"
     ln -s $config $target
@@ -39,3 +43,14 @@ for file in "${VIMFILES[@]}"; do
     ln -s ${VALUE} ${KEY}
   fi
 done
+
+echo "Creating emacs symlink"
+echo "=============================="
+
+if [ ! -d $HOME/.emacs.d ]; then
+  echo "Linking ~/.emacs.d"
+  ln -s $DOTFILES/emacs $HOME/.emacs.d
+else
+  echo "already exists... skipping."
+fi
+

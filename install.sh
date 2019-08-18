@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-DOWNLOAD_URL=https://github.com/colmugx/vim_configure/archive/master.zip
-REMOTE_FILE=$HOME/vim_configure.zip
-LOCAL_FILE_DIR=$HOME/vim_configure-master
-LOCAL_FILE_NEW_DIR=$HOME/.dotfiles
+DOWNLOAD_URL=https://github.com/colmugx/dotfiles
 DOTFILES=$HOME/.dotfiles
 
-curl -o $REMOTE_FILE -LO $DOWNLOAD_URL && unzip -qq $REMOTE_FILE && rm $REMOTE_FILE && mv $LOCAL_FILE_DIR $LOCAL_FILE_NEW_DIR
+git clone $DOWNLOAD_URL $DOTFILES
 
 clear
 echo

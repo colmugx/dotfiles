@@ -2,3 +2,6 @@
 .DS_Store
 /vim/autoload/
 /vim/plugged/
+elpa
+auto-save-list
+.cache
