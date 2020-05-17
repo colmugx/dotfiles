@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "hammerspoon",
+  "version": "0",
+  "description": "",
+  "scripts": {
+    "build": "tstl",
+    "dev": "tstl --watch"
+  },
+  "author": "colmugx",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript-to-lua": "^0.33.0"
+  }
+}

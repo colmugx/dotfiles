@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "strict": true,
+    "baseUrl": ".",
+    "outDir": "../lib",
+  },
+  "tstl": {
+    "luaTarget": "JIT"
+  }
+}
