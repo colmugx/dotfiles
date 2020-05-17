@@ -95,7 +95,6 @@ nnoremap <silent> <leader>ltd <Plug>(coc-type-definition)
 nnoremap <silent> <leader>lr <Plug>(coc-rename)
 
 call coc#add_extension(
-  \ 'coc-vetur',
   \ 'coc-tsserver',
   \ 'coc-json',
   \ 'coc-css',
