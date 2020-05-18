@@ -1,6 +1,7 @@
 type TModule = {
   hotkey: [string[], string]
   path: string
+  [key: string]: any
 }
 type TConfig = {
   [key: string]: TModule
@@ -9,7 +10,8 @@ type TConfig = {
 const config: TConfig = {
   clipboard: {
     hotkey: [['cmd', 'shift'], 'v'],
-    path: './.clipboard'
+    path: './.clipboard',
+    limit: 20
   },
 }
 

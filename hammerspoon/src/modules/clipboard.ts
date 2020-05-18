@@ -4,6 +4,7 @@ import config from '../config'
 const clipboardConfig = config.clipboard
 
 interface ModelChoice {
+  createdAt: number
   type: 'public.png' | 'public.utf8-plain-text'
   title: string
   content: any
@@ -17,21 +18,19 @@ interface IChoice {
   image?: any
 }
 
-let history: ModelChoice[] = [],
-  size = 40
-
 class Clipboard {
   chooser: Chooser | undefined
   db: Sqlite | undefined
 
   constructor() {
     // TODO: 存到数据库
-    // this.initDb()
+    this.initDb()
     this.init()
   }
 
   init() {
     const chooser = hs.chooser.new(selected => this.getItem(selected))
+    chooser.showCallback(() => this.cleanData())
     this.chooser = chooser
   }
 
@@ -42,7 +41,7 @@ class Clipboard {
     const db = hs.sqlite3.open(`${clipboardConfig.path}/db.sqlite3`)
     db.exec(`CREATE TABLE clipboard(
       created_at NUMERIC PRIMARY KEY NOT NULL,
-      uti_type TEXT NOT NULL,
+      type TEXT NOT NULL,
       title TEXT NOT NULL,
       content TEXT NOT NULL
     );`)
@@ -67,10 +66,8 @@ class Clipboard {
     const content = pasteboard.readString()
     const title = string.gsub(content, '[\r\n]+', '')
     if (!title || title.length < 3) return
-    
-    history.push({title, content, type})
-    // TODO: 存到数据库
-    // this.saveToDb({ title, content, type })
+
+    this.saveToDb({ title, content, type })
   }
 
   saveImage(type: ModelChoice['type']) {
@@ -78,32 +75,42 @@ class Clipboard {
     const content = pasteboard.readImage().encodeAsURLString()
     const title = 'IMAGE'
 
-    history.push({title, content, type})
-    // TODO: 存到数据库
-    // this.saveToDb({ title, content, type })
+    this.saveToDb({ title, content, type })
   }
 
-  saveToDb({ title, content, type }: { title: string; content: string; type: ModelChoice['type'] }) {
-    this.db!.exec(`DELETE FROM clipboard WHERE uti_type = '${type}' AND content = '${content}';`)
+  saveToDb({
+    title,
+    content,
+    type,
+  }: {
+    title: string
+    content: string
+    type: ModelChoice['type']
+  }) {
+    this.db!.exec(`DELETE FROM clipboard WHERE type = '${type}' AND content = '${content}';`)
     this.db!.exec(
       `INSERT INTO clipboard VALUES(${os.time()}, '${type}', '${title}', '${content}');`,
     )
   }
 
   show() {
-    const choices = history.map(item => {
+    const sql = `SELECT * FROM clipboard ORDER BY created_at DESC LIMIT ${clipboardConfig.limit};`
+    const choices: IChoice[] = []
+    for (const [createAt, type, title, content] of this.db!.urows<string>(sql)) {
       const choice: IChoice = {
-        text: item.title,
-        type: item.type,
+        text: title,
+        type: type as IChoice['type'],
+        content,
+        subText: os.date('%Y-%m-%d %H:%M:%S', createAt),
       }
-      if (isImgType(item.type)) {
-        choice.image = hs.image.imageFromURL(item.content)
+      if (isImgType(type)) {
+        choice.image = hs.image.imageFromURL(content)
       }
 
-      return choice
-    })
+      choices.push(choice)
+    }
 
-    this.chooser!.choices(choices.reverse())
+    this.chooser!.choices(choices)
     this.chooser!.show()
   }
 
@@ -115,7 +122,16 @@ class Clipboard {
       } else if (isTextType(type)) {
         hs.pasteboard.setContents(content)
       }
+      hs.eventtap.keyStroke(['cmd'], 'v')
     }
+  }
+
+  cleanData() {
+    const selectSql = `(SELECT count(content) FROM clipboard)`
+    this.db!.exec(
+      `DELETE FROM clipboard WHERE ${selectSql} > ${clipboardConfig.limit} AND content IN
+      (SELECT content FROM clipboard ORDER BY created_at DESC LIMIT ${selectSql} OFFSET ${clipboardConfig.limit});`,
+    )
   }
 }
 

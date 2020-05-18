@@ -9,6 +9,7 @@ interface HSChooser {
 interface Chooser {
   choices<T>(choices: T): void
   show(): void
+  showCallback(callback: (this: void, selected: any) => void): void
 }
 
 /**
@@ -93,9 +94,12 @@ interface HSEventTap {
 interface HSSqlite {
   open(path: string): Sqlite
 }
+
+/** @luaIterator @tupleReturn */
+type LuaIterable<T extends any[]> = Iterable<T>;
 interface Sqlite {
   exec(sql: string): void
-  urows<T>(sql: string): T[]
+  urows<T>(sql: string): LuaIterable<T[]>
 }
 
 /**
@@ -125,6 +129,7 @@ declare const string: {
 }
 declare const os: {
   time(this: void): void
+  date(this: void, format: string, data: any): string
 }
 declare function pcall(this: void, fn: Function): void
 declare function require(this: void, path: string): void
