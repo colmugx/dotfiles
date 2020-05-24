@@ -1,7 +1,5 @@
 import { isImgType, isTextType } from '../utils'
-import config from '../config'
-
-const clipboardConfig = config.clipboard
+import { clipboardConf } from '../config'
 
 interface ModelChoice {
   createdAt: number
@@ -23,7 +21,6 @@ class Clipboard {
   db: Sqlite | undefined
 
   constructor() {
-    // TODO: 存到数据库
     this.initDb()
     this.init()
   }
@@ -36,9 +33,9 @@ class Clipboard {
 
   initDb() {
     // create dir
-    hs.fs.mkdir(clipboardConfig.path)
+    hs.fs.mkdir(clipboardConf.path)
 
-    const db = hs.sqlite3.open(`${clipboardConfig.path}/db.sqlite3`)
+    const db = hs.sqlite3.open(`${clipboardConf.path}/db.sqlite3`)
     db.exec(`CREATE TABLE clipboard(
       created_at NUMERIC PRIMARY KEY NOT NULL,
       type TEXT NOT NULL,
@@ -94,7 +91,7 @@ class Clipboard {
   }
 
   show() {
-    const sql = `SELECT * FROM clipboard ORDER BY created_at DESC LIMIT ${clipboardConfig.limit};`
+    const sql = `SELECT * FROM clipboard ORDER BY created_at DESC LIMIT ${clipboardConf.limit};`
     const choices: IChoice[] = []
     for (const [createAt, type, title, content] of this.db!.urows<string>(sql)) {
       const choice: IChoice = {
@@ -129,15 +126,16 @@ class Clipboard {
   cleanData() {
     const selectSql = `(SELECT count(content) FROM clipboard)`
     this.db!.exec(
-      `DELETE FROM clipboard WHERE ${selectSql} > ${clipboardConfig.limit} AND content IN
-      (SELECT content FROM clipboard ORDER BY created_at DESC LIMIT ${selectSql} OFFSET ${clipboardConfig.limit});`,
+      `DELETE FROM clipboard WHERE ${selectSql} > ${clipboardConf.limit} AND content IN
+      (SELECT content FROM clipboard ORDER BY created_at DESC LIMIT ${selectSql} OFFSET ${clipboardConf.limit});`,
     )
   }
 }
 
-export const clipboard = new Clipboard()
-export let preCount = hs.pasteboard.changeCount()
-export const watcher = hs.timer.new(1, () => {
+const clipboard = new Clipboard()
+
+let preCount = hs.pasteboard.changeCount()
+const watcher = hs.timer.new(1, () => {
   const now = hs.pasteboard.changeCount()
   if (now !== preCount) {
     pcall(clipboard.save.bind(clipboard))
@@ -146,6 +144,6 @@ export const watcher = hs.timer.new(1, () => {
 })
 watcher.start()
 
-hs.hotkey.bind(clipboardConfig.hotkey[0], clipboardConfig.hotkey[1], () => {
+hs.hotkey.bind(clipboardConf.hotkey[0], clipboardConf.hotkey[1], () => {
   clipboard.show()
 })

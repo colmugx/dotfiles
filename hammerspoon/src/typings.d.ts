@@ -1,3 +1,10 @@
+/** @luaTable */
+interface LuaTable<K extends {} = {}, V = any> {
+  readonly length: number
+  set(key: K, value: V | undefined): void
+  get(key: K): V | undefined
+}
+
 /**
  * hs.chooser
  * https://www.hammerspoon.org/docs/hs.chooser.html
@@ -10,6 +17,24 @@ interface Chooser {
   choices<T>(choices: T): void
   show(): void
   showCallback(callback: (this: void, selected: any) => void): void
+}
+
+/**
+ * hs.menubar
+ * https://www.hammerspoon.org/docs/hs.menubar.html
+ */
+interface HSMenubar {
+  new: () => Menubar
+}
+interface MenuItem {
+  title: string
+  fn?: Function
+  tooltip?: string
+  image?: string
+}
+interface Menubar {
+  setMenu(menus: MenuItem[]): void
+  setTitle(title: string): void
 }
 
 /**
@@ -78,6 +103,17 @@ interface Timer {
 }
 
 /**
+ * hs.timer
+ * https://www.hammerspoon.org/docs/hs.timer.html
+ * @noSelf
+ */
+interface HSNetwork {
+  primaryInterfaces(): string
+
+  interfaceDetails(inter: string): LuaTable
+}
+
+/**
  * hs.eventtap
  * https://www.hammerspoon.org/docs/hs.eventtap.html
  * @noSelf
@@ -96,7 +132,7 @@ interface HSSqlite {
 }
 
 /** @luaIterator @tupleReturn */
-type LuaIterable<T extends any[]> = Iterable<T>;
+type LuaIterable<T extends any[]> = Iterable<T>
 interface Sqlite {
   exec(sql: string): void
   urows<T>(sql: string): LuaIterable<T[]>
@@ -110,9 +146,19 @@ interface HSInspect {
   inspect(variable: any): string
 }
 
+/**
+ * hs.styledtext
+ * @noSelf
+ */
+interface HSStyledtext {
+  new: (str: string, style: object) => string
+}
+
 interface IHammerSpoon {
   hotkey: HSHotkey
   chooser: HSChooser
+  menubar: HSMenubar
+  network: HSNetwork
   fnutils: HSUtils
   image: HSImage
   pasteboard: HSPasteboard
@@ -121,11 +167,15 @@ interface IHammerSpoon {
   fs: HSFs
   sqlite3: HSSqlite
   inspect: HSInspect
+  styledtext: HSStyledtext
+
+  execute: (this: void, command: string, env?: string) => LuaTable
 }
 
 declare const hs: IHammerSpoon
 declare const string: {
   gsub(this: void, str: string, pattern: string, rep: string): string
+  format(this: void, format: string, data: any): string
 }
 declare const os: {
   time(this: void): void
@@ -133,3 +183,4 @@ declare const os: {
 }
 declare function pcall(this: void, fn: Function): void
 declare function require(this: void, path: string): void
+declare function tonumber(this: void, str: string): number
