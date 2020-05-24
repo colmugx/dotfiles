@@ -16,7 +16,9 @@ interface HSChooser {
 interface Chooser {
   choices<T>(choices: T): void
   show(): void
+  selectedRowContents<T>(): T
   showCallback(callback: (this: void, selected: any) => void): void
+  queryChangedCallback(): void
 }
 
 /**
@@ -43,7 +45,11 @@ interface Menubar {
  * @noSelf
  */
 interface HSHotkey {
-  bind(key1: string[], key2: string, callback: Function): void
+  bind(key1: string[] | string, key2: string | undefined, callback: Function): Hotkey
+}
+interface Hotkey {
+  disable(): void
+  enable(): void
 }
 
 /**
@@ -62,9 +68,23 @@ interface HSUtils {
  */
 interface HSImage {
   imageFromURL(url: string): any
+  imageFromPath(path: string): any
+  imageFromASCII(ascii: string): any
 }
 interface Image {
   encodeAsURLString(): string
+}
+
+/**
+ * hs.itunes
+ * https://www.hammerspoon.org/docs/hs.itunes.html
+ * @noSelf
+ */
+interface HSItunes {
+  getCurrentAlbum(): string
+  getCurrentArtist(): string
+  getCurrentTrack(): string
+  displayCurrentTrack(): void
 }
 
 /**
@@ -103,8 +123,8 @@ interface Timer {
 }
 
 /**
- * hs.timer
- * https://www.hammerspoon.org/docs/hs.timer.html
+ * hs.network
+ * https://www.hammerspoon.org/docs/hs.network.html
  * @noSelf
  */
 interface HSNetwork {
@@ -147,6 +167,19 @@ interface HSInspect {
 }
 
 /**
+ * hs.osascript
+ * @noSelf
+ */
+interface HSOsascript {
+  /** @luaIterator @tupleReturn */
+  applescript(source: string): [boolean, object, any]
+  /** @luaIterator @tupleReturn */
+  applescriptFromFile(filename: string): any
+  javascript(source: string): any
+  javascriptFromFile(filename: string): any
+}
+
+/**
  * hs.styledtext
  * @noSelf
  */
@@ -163,10 +196,12 @@ interface IHammerSpoon {
   image: HSImage
   pasteboard: HSPasteboard
   timer: HSTimer
+  itunes: HSItunes
   eventtap: HSEventTap
   fs: HSFs
   sqlite3: HSSqlite
   inspect: HSInspect
+  osascript: HSOsascript
   styledtext: HSStyledtext
 
   execute: (this: void, command: string, env?: string) => LuaTable
@@ -180,6 +215,7 @@ declare const string: {
 declare const os: {
   time(this: void): void
   date(this: void, format: string, data: any): string
+  getenv(this: void, path: string): string
 }
 declare function pcall(this: void, fn: Function): void
 declare function require(this: void, path: string): void

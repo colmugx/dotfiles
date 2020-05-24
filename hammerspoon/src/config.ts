@@ -1,18 +1,25 @@
-type TModule = {
-  hotkey: [string[], string]
-  path: string
+type TConfig = {
   [key: string]: any
 }
-type TConfig = {
-  [key: string]: TModule
+
+/* -- clipboard -- */
+type TClipboard = {
+  hotkey: [string[], string]
+  path: string
+  limit: number
+}
+const clipboardConf: TClipboard = {
+  hotkey: [['cmd', 'shift'], 'v'],
+  path: './.clipboard',
+  limit: 20
 }
 
-const config: TConfig = {
-  clipboard: {
-    hotkey: [['cmd', 'shift'], 'v'],
-    path: './.clipboard',
-    limit: 20
-  },
+
+type TQuicklist = {
+  hotkey: [string[], string]
+}
+const quicklistConf: TQuicklist = {
+  hotkey: [['option'], 'space'],
 }
 
-export default config
+export { clipboardConf, quicklistConf }
