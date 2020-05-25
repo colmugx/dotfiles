@@ -11,9 +11,8 @@ type TClipboard = {
 const clipboardConf: TClipboard = {
   hotkey: [['cmd', 'shift'], 'v'],
   path: './.clipboard',
-  limit: 20
+  limit: 20,
 }
-
 
 type TQuicklist = {
   hotkey: [string[], string]

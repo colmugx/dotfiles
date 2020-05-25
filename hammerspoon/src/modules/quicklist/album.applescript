@@ -19,3 +19,4 @@ set outFile to open for access file tmpName with write permission
 set eof outFile to 0
 write srcBytes to outFile
 close access outFile
+get tmpName
