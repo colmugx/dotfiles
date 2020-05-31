@@ -1,9 +1,14 @@
 import { quicklistConf } from '../../config'
 import { Music } from './music'
 
+export type TAction = 'open' | 'music'
+
 export interface IChoice {
   text: string
-  content?: any
+  content?: {
+    action: TAction
+    attr: string
+  }
   child?: any
   subText?: string
   image?: any
@@ -13,6 +18,10 @@ class Quicklist {
   chooser: Chooser | undefined
   appList: any[] = []
   trigger: any
+  actions = {
+    open: hs.application.open,
+    action: null
+  }
 
   constructor() {
     this.init()
@@ -51,8 +60,15 @@ class Quicklist {
   getItem(selected: IChoice) {
     this.trigger.disable()
     if (selected) {
-      this.chooser!.choices(selected.content)
-      this.chooser!.queryChangedCallback()
+      if (selected.content) {
+        if (selected.content.action === 'music') {
+          type TAttr = 'next' | 'previous' | 'playpause'
+          hs.itunes[selected.content.attr as TAttr]()
+        } else {
+          const action = this.actions[selected.content.action]
+          action(selected.content.attr)
+        }
+      }
     }
   }
 
@@ -64,7 +80,7 @@ class Quicklist {
   }
 }
 
-const quicklist = new Quicklist()
+export const quicklist = new Quicklist()
 hs.hotkey.bind(quicklistConf.hotkey[0], quicklistConf.hotkey[1], () => {
   quicklist.show()
 })

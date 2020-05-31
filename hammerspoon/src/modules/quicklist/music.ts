@@ -1,23 +1,39 @@
 import { IChoice } from './init'
 
 export class Music {
+  readonly appName = '音乐' // Apple Music
   chooser: Chooser | undefined
   album: string = ''
   artist: string = ''
   track: string = ''
+  albumImg: string = ''
 
   constructor(chooser: Chooser) {
     this.chooser = chooser
   }
 
   status(): IChoice {
+    const item: IChoice = {
+      text: 'Apple Music',
+      image: hs.image.imageFromPath('./modules/quicklist/assests/AppIcon.icns'),
+      content: {
+        action: 'open',
+        attr: 'Music'
+      }
+    }
+    const isRunning = hs.application.get(this.appName) !== null
+    const isPlaying = hs.itunes.getPlaybackState() === hs.itunes.state_playing
+    if (!isRunning) {
+      return item
+    }
     const { track, artist, album, albumImg } = this.now()
 
     return {
-      text: `${track} - ${artist}`,
+      ...item,
+      text: `【当前播放】${track} - ${artist}`,
       subText: `${album} by Music`,
       image: albumImg,
-      child: this.menu,
+      child: this.menu(isPlaying),
     }
   }
 
@@ -27,7 +43,7 @@ export class Music {
     const track = hs.itunes.getCurrentTrack()
 
     const [_, data] = hs.osascript.applescriptFromFile(
-      `${os.getenv('HOME')}/.hammerspoon/modules/quicklist/album.applescript`,
+      './modules/quicklist/album.applescript',
     )
 
     const path = `/${(data as string).split(':').slice(1).join('/')}`
@@ -37,24 +53,37 @@ export class Music {
     this.track = track
     this.artist = artist
     this.album = album
+    this.albumImg = albumImg
 
     return { track, artist, album, albumImg }
   }
 
-  get menu(): IChoice[] {
+  menu(status: boolean): IChoice[] {
     return [
       {
-        text: `${this.track} - ${this.artist}`,
-        subText: `${this.album} by Music`,
+        text: status ? '暂停(pause)' : '播放(play)',
+        subText: `${this.track} by Music`,
+        image: this.albumImg,
+        content: {
+          action: 'music',
+          attr: 'playpause'
+        }
       },
       {
-        text: 'Play/Pause',
+        text: '上一首(prev track)',
+        image: hs.image.imageFromPath('./modules/quicklist/assests/previous.png'),
+        content: {
+          action: 'music',
+          attr: 'previous'
+        }
       },
       {
-        text: 'prev',
-      },
-      {
-        text: 'next',
+        text: '下一首(next track)',
+        image: hs.image.imageFromPath('./modules/quicklist/assests/next.png'),
+        content: {
+          action: 'music',
+          attr: 'next'
+        }
       },
     ]
   }

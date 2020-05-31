@@ -6,6 +6,16 @@ interface LuaTable<K extends {} = {}, V = any> {
 }
 
 /**
+ * hs.application
+ * https://www.hammerspoon.org/docs/hs.application.html
+ * @noSelf
+ */
+interface HSApplication {
+  open(app: string): void
+  get(app: string): any
+}
+
+/**
  * hs.chooser
  * https://www.hammerspoon.org/docs/hs.chooser.html
  * @noSelf
@@ -81,6 +91,11 @@ interface Image {
  * @noSelf
  */
 interface HSItunes {
+  state_playing: string
+  playpause(): void
+  next(): void
+  previous(): void
+  getPlaybackState(): string
   getCurrentAlbum(): string
   getCurrentArtist(): string
   getCurrentTrack(): string
@@ -188,8 +203,9 @@ interface HSStyledtext {
 }
 
 interface IHammerSpoon {
-  hotkey: HSHotkey
+  application: HSApplication
   chooser: HSChooser
+  hotkey: HSHotkey
   menubar: HSMenubar
   network: HSNetwork
   fnutils: HSUtils

@@ -132,17 +132,17 @@ class Clipboard {
   }
 }
 
-const clipboard = new Clipboard()
+export const clipboard = new Clipboard()
 
 let preCount = hs.pasteboard.changeCount()
-const watcher = hs.timer.new(1, () => {
+export const clipWatcher = hs.timer.new(1, () => {
   const now = hs.pasteboard.changeCount()
   if (now !== preCount) {
     pcall(clipboard.save.bind(clipboard))
     preCount = now
   }
 })
-watcher.start()
+clipWatcher.start()
 
 hs.hotkey.bind(clipboardConf.hotkey[0], clipboardConf.hotkey[1], () => {
   clipboard.show()

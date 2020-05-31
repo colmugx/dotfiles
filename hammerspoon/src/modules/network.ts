@@ -116,8 +116,8 @@ class NetworkStatus {
   }
 }
 
-const netStatus = new NetworkStatus()
-const watcher = hs.timer.new(1, () => {
+export const netStatus = new NetworkStatus()
+export const netWatcher = hs.timer.new(1, () => {
   pcall(netStatus.refresh.bind(netStatus))
 })
-watcher.start()
+netWatcher.start()

@@ -1,6 +1,4 @@
-type TConfig = {
-  [key: string]: any
-}
+const dbPath = './.db'
 
 /* -- clipboard -- */
 type TClipboard = {
@@ -10,10 +8,11 @@ type TClipboard = {
 }
 const clipboardConf: TClipboard = {
   hotkey: [['cmd', 'shift'], 'v'],
-  path: './.clipboard',
+  path: dbPath,
   limit: 20,
 }
 
+/* -- quicklist -- */
 type TQuicklist = {
   hotkey: [string[], string]
 }
