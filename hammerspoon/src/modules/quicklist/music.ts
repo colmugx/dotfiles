@@ -22,11 +22,16 @@ export class Music {
       }
     }
     const isRunning = hs.application.get(this.appName) !== null
-    const isPlaying = hs.itunes.getPlaybackState() === hs.itunes.state_playing
     if (!isRunning) {
       return item
     }
+    const isStoping = hs.itunes.getPlaybackState() === hs.itunes.state_stopped
+    if (isStoping) {
+      return item
+    }
+
     const { track, artist, album, albumImg } = this.now()
+    const isPlaying = hs.itunes.getPlaybackState() === hs.itunes.state_playing
 
     return {
       ...item,

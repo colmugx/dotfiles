@@ -11,8 +11,10 @@ interface LuaTable<K extends {} = {}, V = any> {
  * @noSelf
  */
 interface HSApplication {
+  enableSpotlightForNameSearches(state: string): boolean
   open(app: string): void
   get(app: string): any
+  find(app: string): any
 }
 
 /**
@@ -92,6 +94,7 @@ interface Image {
  */
 interface HSItunes {
   state_playing: string
+  state_stopped: string
   playpause(): void
   next(): void
   previous(): void
