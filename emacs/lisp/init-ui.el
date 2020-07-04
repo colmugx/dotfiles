@@ -26,12 +26,12 @@
   (load-theme 'doom-one t))
 
 ;; font
-(set-face-attribute 'default nil :font "Fira Code 14")
+(set-face-attribute 'default nil :font "JetBrainsMono 14")
 ;; Setting Chinese Font
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
     charset
-	  (font-spec :family "PingFang SC" :size 14)))
+	  (font-spec :family "Lantinghei SC" :size 14)))
 
 
 

@@ -2,9 +2,9 @@
 (package-initialize)
 (setq package-enable-at-startup nil)
 
-(setq package-archives '(("melpa" . "http://elpa.emacs-china.org/melpa/")
-       ("org" . "http://elpa.emacs-china.org/org/")
-       ("gnu" . "http://elpa.emacs-china.org/gnu/")))
+(setq package-archives '(("melpa" . "https://elpa.emacs-china.org/melpa/")
+       ("org" . "https://elpa.emacs-china.org/org/")
+       ("gnu" . "https://elpa.emacs-china.org/gnu/")))
 
 
 (unless (package-installed-p 'use-package)

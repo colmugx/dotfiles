@@ -1,6 +1,6 @@
 
 ;; javascript
-(use-package js2-mode
+(use-package js-mode
 	:ensure t)
 
 ;; jsx
