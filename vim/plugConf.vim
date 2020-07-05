@@ -14,6 +14,13 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " rainbow
 let g:rainbow_active=1
 
+" indentLine
+let g:indentLine_enabled = 1
+let g:indentLine_color_gui = '#cccccc'
+let g:indentLine_faster = 1
+
+autocmd Filetype json let g:indentLine_setConceal = 0
+
 " nerdtree
 nnoremap <Leader>ft :NERDTreeToggle<Cr>
 let NERDTreeShowHidden=1
@@ -66,8 +73,7 @@ augroup END
 
 " jsdoc
 let g:jsdoc_enable_es6 = 1
-
-nmap /** :JsDoc<CR>
+imap /** :JsDoc<CR>
 
 " javascript
 let javascript_enable_domhtmlcss = 1
@@ -100,9 +106,8 @@ call coc#add_extension(
   \ 'coc-css',
   \ 'coc-word',
   \ 'coc-prettier',
+  \ 'coc-eslint',
   \ 'coc-rls',
-  \ 'coc-python',
-  \ 'coc-tabnine',
   \ )
 
 " autocmd(plugin)
@@ -123,6 +128,9 @@ nnoremap <silent> <leader>bf :Files<Cr>
 
 " winresizer
 let g:winresizer_start_key = '<Leader>r'
+
+" pangu
+autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 
 " python
 let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'

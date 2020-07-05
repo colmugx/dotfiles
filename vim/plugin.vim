@@ -19,6 +19,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'simeji/winresizer'
   Plug 'vim-scripts/BufOnly.vim'
+  Plug 'hotoo/pangu.vim'
+  Plug 'Yggdroot/indentLine'
 
 
   " Language
@@ -32,14 +34,13 @@ call plug#begin('~/.vim/plugged')
   "" CSS
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'wavded/vim-stylus'
 
   "" Other
   Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
   Plug 'jparise/vim-graphql'
-  Plug 'rust-lang/rust.vim'
   Plug 'dag/vim-fish'
   Plug 'ElmCast/elm-vim'
+  Plug 'cespare/vim-toml'
 
 
   " Lint
@@ -68,6 +69,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'jceb/vim-orgmode'
+  Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 source ~/.vim/plugConf.vim
