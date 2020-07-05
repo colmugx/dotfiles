@@ -19,7 +19,6 @@ let g:indentLine_enabled = 1
 let g:indentLine_color_gui = '#cccccc'
 let g:indentLine_faster = 1
 
-autocmd Filetype json let g:indentLine_setConceal = 0
 
 " nerdtree
 nnoremap <Leader>ft :NERDTreeToggle<Cr>
@@ -66,10 +65,6 @@ nnoremap <leader>tt :TagbarToggle<Cr>
 
 " vim-trailing-whitespace
 nmap <silent> <leader><space><space> :FixWhitespace<cr>
-augroup TrailingSpace
-  autocmd!
-  autocmd BufWritePre * FixWhitespace
-augroup END
 
 " jsdoc
 let g:jsdoc_enable_es6 = 1
@@ -110,11 +105,6 @@ call coc#add_extension(
   \ 'coc-rls',
   \ )
 
-" autocmd(plugin)
-autocmd BufRead,BufNewFile *.tsx setlocal filetype=react.typescript
-autocmd BufRead,BufNewFile *.jsx setlocal filetype=javascript.jsx
-autocmd BufRead,BufNewFile *.styl setlocal filetype=stylus.css
-
 " closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.vue'
 
@@ -129,8 +119,12 @@ nnoremap <silent> <leader>bf :Files<Cr>
 " winresizer
 let g:winresizer_start_key = '<Leader>r'
 
-" pangu
-autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
+" markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_auto_extension_ext = 'md'
 
 " python
 let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'

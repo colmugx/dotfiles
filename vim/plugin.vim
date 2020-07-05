@@ -69,9 +69,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'jceb/vim-orgmode'
   Plug 'easymotion/vim-easymotion'
-call plug#end()
+
+  " text
+  Plug 'jceb/vim-orgmode'
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+  call plug#end()
 
 source ~/.vim/plugConf.vim
 
