@@ -6,6 +6,7 @@ source ~/.dotfiles/config/fish/aliases.fish
 source ~/miniconda3/etc/fish/conf.d/conda.fish
 
 thefuck --alias | source
-set -U fish_prompt_pwd_dir_length 0
-set -gx EDITOR 'nvim'
 
+set -gx EDITOR 'nvim'
+set -gx GIT_EDITOR 'nvim'
+set -gx TERM 'screen-256color'
