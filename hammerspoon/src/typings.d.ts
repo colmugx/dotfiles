@@ -135,9 +135,13 @@ interface HSPasteboard {
  */
 interface HSTimer {
   new: (interval: number, callback: Function) => Timer
+  doEvery(interval: number, callback: Function): Timer
+  minutes(min: number): number
 }
 interface Timer {
+  running(): boolean
   start(): void
+  stop(): void
 }
 
 /**
@@ -229,7 +233,7 @@ interface IHammerSpoon {
 declare const hs: IHammerSpoon
 declare const string: {
   gsub(this: void, str: string, pattern: string, rep: string): string
-  format(this: void, format: string, data: any): string
+  format(this: void, format: string, ...data: any[]): string
 }
 declare const os: {
   time(this: void): void
