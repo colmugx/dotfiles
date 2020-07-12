@@ -22,6 +22,7 @@ set smarttab
 set expandtab
 set backspace=2
 set autoindent
+set conceallevel=0
 
 " filetype
 filetype plugin on

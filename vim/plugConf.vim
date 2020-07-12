@@ -120,6 +120,8 @@ nnoremap <silent> <leader>bf :Files<Cr>
 let g:winresizer_start_key = '<Leader>r'
 
 " markdown
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_math = 1
