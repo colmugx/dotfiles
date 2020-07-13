@@ -145,6 +145,20 @@ interface Timer {
 }
 
 /**
+ * hs.notify
+ * https://www.hammerspoon.org/docs/hs.notify.html
+ * @noSelf
+ */
+interface HSNotify {
+  new: (fn: Function, obj?: {title?: string, subTitle?: string, informativeText?: string, setIdImage?: Image}) => Notfication
+  show(title: string, subTitle: string, information: string): Notfication
+}
+interface Notfication {
+  setIdImage(image: Image): Notification
+  send(): void
+}
+
+/**
  * hs.network
  * https://www.hammerspoon.org/docs/hs.network.html
  * @noSelf
@@ -219,6 +233,7 @@ interface IHammerSpoon {
   image: HSImage
   pasteboard: HSPasteboard
   timer: HSTimer
+  notify: HSNotify
   itunes: HSItunes
   eventtap: HSEventTap
   fs: HSFs
@@ -237,7 +252,7 @@ declare const string: {
 }
 declare const os: {
   time(this: void): void
-  date(this: void, format: string, data: any): string
+  date(this: void, format: string, data?: any): string
   getenv(this: void, path: string): string
 }
 declare function pcall(this: void, fn: Function): void

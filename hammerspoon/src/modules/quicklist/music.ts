@@ -15,7 +15,7 @@ export class Music {
   status(): IChoice {
     const item: IChoice = {
       text: 'Apple Music',
-      image: hs.image.imageFromPath('./modules/quicklist/assests/AppIcon.icns'),
+      image: hs.image.imageFromPath('./modules/assests/AppIcon.icns'),
       content: {
         action: 'open',
         attr: 'Music'
@@ -76,7 +76,7 @@ export class Music {
       },
       {
         text: '上一首(prev track)',
-        image: hs.image.imageFromPath('./modules/quicklist/assests/previous.png'),
+        image: hs.image.imageFromPath('./modules/assests/previous.png'),
         content: {
           action: 'music',
           attr: 'previous'
@@ -84,7 +84,7 @@ export class Music {
       },
       {
         text: '下一首(next track)',
-        image: hs.image.imageFromPath('./modules/quicklist/assests/next.png'),
+        image: hs.image.imageFromPath('./modules/assests/next.png'),
         content: {
           action: 'music',
           attr: 'next'

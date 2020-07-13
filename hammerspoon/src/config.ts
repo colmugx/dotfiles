@@ -20,4 +20,10 @@ const quicklistConf: TQuicklist = {
   hotkey: [['option'], 'space'],
 }
 
-export { clipboardConf, quicklistConf }
+/* -- pomodoro -- */
+const pomodoroConf = {
+  timeLength: 25,
+  breakLength: 5
+}
+
+export { clipboardConf, quicklistConf, pomodoroConf }

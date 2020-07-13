@@ -1,3 +1,5 @@
+import { pomodoroConf } from '../config'
+
 enum EStatus {
   STOP,
   PAUSE,
@@ -10,26 +12,27 @@ enum EType {
 }
 
 class Pomodoro {
-  readonly timeLength = 25
-  readonly breakLength = 5
-  
+  private readonly tomatoPic = hs.image.imageFromPath('./modules/assests/tomato.png')
   menubar: Menubar | undefined
   timer: Timer | undefined
-  status = EStatus.STOP
-  type = EType.WORKING
-  
+  status: EStatus = EStatus.STOP
+  type: EType = EType.WORKING
+
   currentTime: number = 0
 
-  constructor() {
+  constructor(
+    private readonly timeLength: number,
+    private readonly breakLength: number
+  ) {
     this.init()
+    this.setTime()
   }
 
   init() {
     const menubar = hs.menubar.new()
     this.menubar = menubar
 
-    this.setTitle()
-    this.setMenu()
+    this.setStatus(EStatus.STOP)
   }
 
   setMenu() {
@@ -51,29 +54,36 @@ class Pomodoro {
       })
     }
 
-    this.menubar?.setMenu(menu)
+    this.menubar!.setMenu(menu)
   }
 
-  setTitle() {
-    const title = '🍅'
-    console.log(this.currentTime)
-    const min = this.currentTime > 59 ? Math.floor(this.currentTime / 60) : 0
-    const sec = this.currentTime - min * 60
-    this.menubar?.setTitle(
-      `${title}${this.status !== EStatus.STOP 
-        ? `${string.format('%02.f:%02.f', min > 0 ? min : 0, sec)}`
-        : ''
-      }`
-    )
+  setNotify(type: EType) {
+    const text = {
+      [EType.BREAKING]: '休息时间',
+      [EType.WORKING]: '工作时间'
+    }
+    const notify = hs.notify.new(() => {}, {
+      title: `${text[type]}结束`,
+      informativeText: `完成时间：${os.date('%H:%M')}`,
+      setIdImage: this.tomatoPic
+    })
+    notify.send()
   }
 
   update() {
-    this.currentTime -= 1
-    this.setTitle()
+    if (this.currentTime === 0) {
+      this.setNotify(this.type)
+      this.pause()
+      this.type = this.type === EType.BREAKING ? EType.WORKING : EType.BREAKING
+      this.setTime()
+    } else {
+      this.currentTime -= 1
+      this.setTitle()
+    }
   }
 
   toggle() {
-    const status = this.timer && this.timer?.running()
+    const status = this.timer && this.timer!.running()
     if (status) {
       this.pause()
     } else {
@@ -81,14 +91,7 @@ class Pomodoro {
     }
   }
 
-  run() {
-    if (this.status === EStatus.STOP) {
-      this.currentTime
-      = hs.timer.minutes(this.type === EType.WORKING
-        ? this.timeLength
-        : this.breakLength)
-    }
-
+  private run() {
     this.timer = hs.timer.doEvery(1, () => {
       this.update()
     })
@@ -96,22 +99,34 @@ class Pomodoro {
     this.setStatus(EStatus.RUNNING)
   }
 
-  pause() {
-    this.timer?.stop()
+  private pause() {
+    this.timer!.stop()
     this.setStatus(EStatus.PAUSE)
   }
 
-  stop() {
-    this.timer?.stop()
+  private stop() {
+    this.timer!.stop()
     this.timer = undefined
     this.setStatus(EStatus.STOP)
   }
 
-  setStatus(status: EStatus) {
+  private setTitle() {
+    const title = '🍅'
+    this.menubar!.setTitle(`${title}${os.date('%M:%S', this.currentTime)}`)
+  }
+
+  private setStatus(status: EStatus) {
     this.status = status
     this.setTitle()
     this.setMenu()
   }
+
+  private setTime() {
+    this.currentTime = hs.timer.minutes(
+      this.type === EType.WORKING ? this.timeLength : this.breakLength,
+    )
+    this.setTitle()
+  }
 }
 
-export const pomodoro = new Pomodoro()
+export const pomodoro = new Pomodoro(pomodoroConf.timeLength, pomodoroConf.breakLength)
