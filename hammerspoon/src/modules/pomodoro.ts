@@ -64,8 +64,9 @@ class Pomodoro {
     }
     const notify = hs.notify.new(() => {}, {
       title: `${text[type]}结束`,
-      informativeText: `完成时间：${os.date('%H:%M')}`,
-      setIdImage: this.tomatoPic
+      informativeText: `结束时间：${os.date('%H:%M')}`,
+      setIdImage: this.tomatoPic,
+      soundName: 'Glass',
     })
     notify.send()
   }
@@ -73,9 +74,11 @@ class Pomodoro {
   update() {
     if (this.currentTime === 0) {
       this.setNotify(this.type)
-      this.pause()
       this.type = this.type === EType.BREAKING ? EType.WORKING : EType.BREAKING
       this.setTime()
+      if (this.type === EType.WORKING) {
+        this.pause()
+      }
     } else {
       this.currentTime -= 1
       this.setTitle()
@@ -107,11 +110,13 @@ class Pomodoro {
   private stop() {
     this.timer!.stop()
     this.timer = undefined
+    this.type = EType.WORKING
     this.setStatus(EStatus.STOP)
+    this.setTime()
   }
 
   private setTitle() {
-    const title = '🍅'
+    const title = this.type === EType.WORKING ? '🍅' : '🛀'
     this.menubar!.setTitle(`${title}${os.date('%M:%S', this.currentTime)}`)
   }
 

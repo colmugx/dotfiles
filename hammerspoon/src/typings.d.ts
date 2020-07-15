@@ -150,7 +150,7 @@ interface Timer {
  * @noSelf
  */
 interface HSNotify {
-  new: (fn: Function, obj?: {title?: string, subTitle?: string, informativeText?: string, setIdImage?: Image}) => Notfication
+  new: (fn: Function, obj?: {title?: string, subTitle?: string, informativeText?: string, setIdImage?: Image, soundName?: string}) => Notfication
   show(title: string, subTitle: string, information: string): Notfication
 }
 interface Notfication {
