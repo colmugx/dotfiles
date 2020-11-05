@@ -4,7 +4,13 @@ nnoremap <Leader>pc :PlugClean<Cr>
 nnoremap <Leader>pu :PlugUpdate<Cr>
 
 " Color & Scheme
+augroup color
+        autocmd!
+        let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16": "7" }
+        autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
+augroup END
 let g:airline_theme='onedark'
+set termguicolors
 colorscheme onedark
 
 let g:airline_powerline_fonts = 1
@@ -20,14 +26,29 @@ let g:indentLine_color_gui = '#cccccc'
 let g:indentLine_faster = 1
 
 
-" nerdtree
-nnoremap <Leader>ft :NERDTreeToggle<Cr>
-let NERDTreeShowHidden=1
-augroup Nerdtree
-  autocmd!
-  autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" defx
+nnoremap <Leader>ft :Defx<Cr>
+let g:defx_icons_enable_syntax_highlight = 1
+call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'topleft',
+      \ 'show_ignored_files': 1,
+      \ 'buffer_name': '',
+      \ 'toggle': 1,
+      \ 'resume': 1,
+      \ 'columns': 'git:mark:indent:icons:filename:type:size'
+      \ })
+function! s:defx_mappings() abort
+  nnoremap <silent><buffer><expr> o defx#is_directory() ?  defx#do_action('open_or_close_tree') : defx#do_action('drop')
+endfunction
+augroup Defx
+  autocmd BufWritePost * call defx#redraw()
+  autocmd BufEnter * call defx#redraw()
+  autocmd BufWritePost * setlocal cursorline
+  autocmd BufEnter * setlocal cursorline
+  autocmd FileType defx match ExtraWhitespace /^^/
+  autocmd FileType defx call s:defx_mappings()
 augroup END
 
 " nerdcommenter

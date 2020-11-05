@@ -1,8 +1,9 @@
 scriptencoding utf-8
 
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
-source ~/.vim/config.vim
-source ~/.vim/keybindings.vim
-source ~/.vim/plugin.vim
-source ~/.vim/autocmd.vim
+runtime! config.vim
+runtime! keybindings.vim
+runtime! plugin.vim
+runtime! pluginConf.vim
+runtime! autocmd.vim

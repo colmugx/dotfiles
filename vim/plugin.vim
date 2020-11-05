@@ -11,8 +11,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdcommenter'
   Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
-  Plug 'scrooloose/nerdtree'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'joshdick/onedark.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
@@ -20,7 +18,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'simeji/winresizer'
   Plug 'vim-scripts/BufOnly.vim'
   Plug 'hotoo/pangu.vim'
-  Plug 'Yggdroot/indentLine'
+  if has('nvim')
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/defx.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  Plug 'kristijanhusak/defx-icons'
+  Plug 'kristijanhusak/defx-git'
 
 
   " Language
@@ -69,7 +75,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'easymotion/vim-easymotion'
 
   " text
   Plug 'jceb/vim-orgmode'
@@ -77,6 +82,3 @@ call plug#begin('~/.vim/plugged')
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
   call plug#end()
-
-source ~/.vim/plugConf.vim
-
