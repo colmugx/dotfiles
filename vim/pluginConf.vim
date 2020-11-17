@@ -41,6 +41,11 @@ call defx#custom#option('_', {
       \ })
 function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> o defx#is_directory() ?  defx#do_action('open_or_close_tree') : defx#do_action('drop')
+  nnoremap <silent><buffer><expr> ma defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> md defx#do_action('remove')
+  nnoremap <silent><buffer><expr> mm defx#do_action('rename')
+  nnoremap <silent><buffer><expr> i defx#do_action('drop', 'vsplit')
+  nnoremap <silent><buffer><expr> r defx#do_action('redraw')
 endfunction
 augroup Defx
   autocmd BufWritePost * call defx#redraw()
@@ -111,10 +116,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " coc
-nnoremap <silent> <leader>lh <Plug>(coc-references)
+nnoremap <silent> <leader>lr <Plug>(coc-references)
 nnoremap <silent> <leader>ld <Plug>(coc-definition)
 nnoremap <silent> <leader>ltd <Plug>(coc-type-definition)
-nnoremap <silent> <leader>lr <Plug>(coc-rename)
+nnoremap <silent> <leader>lrn <Plug>(coc-rename)
+nnoremap <silent> <Leader>lf :call CocAction("format")<CR>
+nnoremap <silent> <leader>la :CocAction<CR>
+nnoremap <silent> <leader>lh :call CocAction("doHover")<CR>
 
 call coc#add_extension(
   \ 'coc-tsserver',
@@ -124,6 +132,7 @@ call coc#add_extension(
   \ 'coc-prettier',
   \ 'coc-eslint',
   \ 'coc-rls',
+  \ 'coc-jest',
   \ )
 
 " closetag
