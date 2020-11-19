@@ -55,12 +55,10 @@ call plug#begin('~/.vim/plugged')
 
   " Complete
   Plug 'mattn/emmet-vim'
-  Plug 'ervandew/supertab'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 
 
   " Snippets
-  Plug 'SirVer/ultisnips'
   Plug 'VimSnippets/vim-web-snippets'
 
 

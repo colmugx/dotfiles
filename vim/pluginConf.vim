@@ -80,11 +80,7 @@ let g:ale_fixers = {
   \ 'python': ['yapf'],
   \ 'rust': ['rustfmt']
   \ }
-let g:ale_fix_on_save = 1
 nmap <silent> <Leader>af <Plug>(ale_fix)
-
-" supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " tagbar
 nnoremap <leader>tt :TagbarToggle<Cr>
@@ -111,10 +107,6 @@ let g:user_emmet_settings = {
   \  },
   \ }
 
-" ultisnips
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 " coc
 nnoremap <silent> <leader>lr <Plug>(coc-references)
 nnoremap <silent> <leader>ld <Plug>(coc-definition)
@@ -123,6 +115,7 @@ nnoremap <silent> <leader>lrn <Plug>(coc-rename)
 nnoremap <silent> <Leader>lf :call CocAction("format")<CR>
 nnoremap <silent> <leader>la :CocAction<CR>
 nnoremap <silent> <leader>lh :call CocAction("doHover")<CR>
+inoremap <silent><expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 call coc#add_extension(
   \ 'coc-tsserver',

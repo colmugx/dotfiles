@@ -2,5 +2,6 @@
   "suggest.triggerAfterInsertEnter": true,
   "suggest.enablePreview": true,
   "eslint.autoFixOnSave": true,
-  "npm.binPath": "yarn"
+  "npm.binPath": "yarn",
+  "jest.watch": false
 }
