@@ -78,8 +78,10 @@ let g:ale_fixers = {
   \ 'scss': ['prettier', 'stylelint'],
   \ 'elm': ['elm-format'],
   \ 'python': ['yapf'],
-  \ 'rust': ['rustfmt']
+  \ 'rust': ['rustfmt'],
+  \ 'vue': ['eslint']
   \ }
+let g:ale_fix_on_save = 1
 nmap <silent> <Leader>af <Plug>(ale_fix)
 
 " tagbar
