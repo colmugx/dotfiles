@@ -9,6 +9,7 @@ syntax enable
 " line
 set cursorline
 set linebreak
+set smartcase
 
 " font
 set encoding=utf-8
