@@ -2,6 +2,9 @@
        ("org" . "https://elpa.emacs-china.org/org/")
        ("gnu" . "https://elpa.emacs-china.org/gnu/")))
 
+(unless (bound-and-true-p package--initialized)
+  (package-initialize)
+  (setq package-enable-at-startup nil))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
