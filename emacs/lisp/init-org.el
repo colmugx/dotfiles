@@ -31,6 +31,15 @@
     "r t a" 'org-roam-tag-add
     "r t d" 'org-roam-tag-delete))
 
+(use-package org-agenda
+  :ensure nil
+  :config
+  (setq org-agenda-files
+    (list
+      (concat dotfiles-org-directory "/books.org")
+      (concat dotfiles-org-directory "/records.org")))
+  (setq org-agenda-include-diary t))
+
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
   :init
