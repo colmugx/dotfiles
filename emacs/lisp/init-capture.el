@@ -6,7 +6,7 @@
       "b" "Book"
       entry
       (file (lambda () (concat dotfiles-org-directory "/books.org")))
-      "* UNREAD %^{BookName} %^g\n ** 基本信息\n%a\n" :clock-in t :clock-resume t :empty-lines 1)
+      "* UNREAD %^{BookName} %^g\n** COMMENT 基本信息\n" :clock-in t :clock-resume t)
 
     (
       "t" "Task"
@@ -30,6 +30,11 @@
       "%?"
       :file-name "zk_card/%<%Y%m%d%H%M>"
       :head "#+title: %<%Y%m%d%H%M>\n"
+      :unnarrowed t)
+    ("k" "knowledge" plain (function org-roam-capture--get-point)
+      "%?"
+      :file-name "knowledges/${title}"
+      :head "#+title: ${title}\n"
       :unnarrowed t)
   ))
 

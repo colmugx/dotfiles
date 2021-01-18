@@ -21,6 +21,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 
+;; 关闭备份
+(setq make-backup-files nil)
+
 ;; treemacs 文件树
 (use-package treemacs
   :defer t

@@ -4,6 +4,7 @@
   :init
   (global-flycheck-mode)
   :config
+  (setq org-tags-column -16)
   (setq truncate-lines nil)
   (setq org-src-fontify-natively t)
   (setq org-highlight-latex-and-related '(native script entities))
@@ -53,6 +54,12 @@
           ("DONE" . 9745)
           ("[X]"  . 9745))))
 
+(use-package org-download
+  :config
+  (add-hook 'dired-mode-hook 'org-download-enable)
+  (setq org-download-method 'attach)
+  (setq org-download-display-inline-images 'posframe)
+  (setq org-download-image-dir (concat dotfiles-roam-directory "/assets")))
 
 (use-package org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
@@ -88,6 +95,7 @@
     '((plantuml . t))))
 
 (use-package org-roam
+    :after org
     :diminish
     :custom (org-roam-directory dotfiles-roam-directory)
     :hook (after-init . org-roam-mode)
@@ -105,7 +113,7 @@
 (use-package org-roam-server
   :config
   (setq org-roam-server-host "127.0.0.1"
-    org-roam-server-port 8080
+    org-roam-server-port 9090
     org-roam-server-authenticate nil
     org-roam-server-export-inline-images t
     org-roam-server-serve-files nil
@@ -115,6 +123,10 @@
     org-roam-server-network-label-truncate t
     org-roam-server-network-label-truncate-length 60
     org-roam-server-network-label-wrap-length 20))
+
+(use-package org-roam-protocol
+  :after org-roam org-roam-server
+  :ensure nil)
 
 (require 'init-capture)
 (provide 'init-org)
