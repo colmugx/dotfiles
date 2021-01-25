@@ -5,7 +5,7 @@
     (
       "b" "Book"
       entry
-      (file (lambda () (concat dotfiles-org-directory "/books.org")))
+      (file (lambda () (concat dotfiles-roam-directory "/books.org")))
       "* UNREAD %^{BookName} %^g\n** COMMENT 基本信息\n" :clock-in t :clock-resume t)
 
     (
@@ -28,12 +28,17 @@
   '(
     ("d" "default" plain (function org-roam-capture--get-point)
       "%?"
-      :file-name "zk_card/%<%Y%m%d%H%M>"
+      :file-name "zk_card/%<%Y%m%d%H%M>-${slug}"
       :head "#+title: %<%Y%m%d%H%M>\n"
       :unnarrowed t)
     ("k" "knowledge" plain (function org-roam-capture--get-point)
       "%?"
       :file-name "knowledges/${title}"
+      :head "#+title: ${title}\n"
+      :unnarrowed t)
+    ("n" "note" plain (function org-roam-capture--get-point)
+      "%?"
+      :file-name "notes/${title}"
       :head "#+title: ${title}\n"
       :unnarrowed t)
   ))

@@ -8,6 +8,8 @@
   (setq truncate-lines nil)
   (setq org-src-fontify-natively t)
   (setq org-highlight-latex-and-related '(native script entities))
+  (setq org-html-head
+    "<link rel='stylesheet' type='text/css' href='https://www.labri.fr/perso/nrougier/GTD/GTD.css'/>")
 
   ;;todo
   (setq org-log-done 'time)
@@ -17,9 +19,16 @@
                                ("DOING" . "gold")
                                ("DONE" . "#65c2bb")
                                ("ABORT" . "#FD9999")))
+  (setq org-link-abbrev-alist
+    '(
+      ("google" . "http://www.google.com/search?q=")
+      ("mdnjs" . "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/%s")))
 
   ;; output
+  (setq org-html-postamble nil)
   (setq org-export-backends (quote (html md)))
+  (setq org-export-with-section-numbers nil)
+  (setq org-export-default-language "zh-CN")
 
   ;; keybingds
   :general
@@ -31,15 +40,6 @@
 
     "r t a" 'org-roam-tag-add
     "r t d" 'org-roam-tag-delete))
-
-(use-package org-agenda
-  :ensure nil
-  :config
-  (setq org-agenda-files
-    (list
-      (concat dotfiles-org-directory "/books.org")
-      (concat dotfiles-org-directory "/records.org")))
-  (setq org-agenda-include-diary t))
 
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
@@ -97,7 +97,9 @@
 (use-package org-roam
     :after org
     :diminish
-    :custom (org-roam-directory dotfiles-roam-directory)
+    :custom
+    (org-roam-directory dotfiles-roam-directory)
+    (org-roam-db-location (concat dotfiles-roam-directory "/org-roam.db"))
     :hook (after-init . org-roam-mode)
     :bind (:map org-roam-mode-map
            (("C-c n l" . org-roam)

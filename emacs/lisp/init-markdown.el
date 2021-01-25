@@ -14,5 +14,6 @@
     ("r" . markdown-toc-generate-or-refresh-toc)))
 
 (use-package org-preview-html)
+(use-package htmlize)
 
 (provide 'init-markdown)
