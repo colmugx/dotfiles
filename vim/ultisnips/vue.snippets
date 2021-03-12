@@ -1,0 +1,26 @@
+snippet vpr "vue prop" 
+${1}: {
+	type: ${2},
+	default: ${0},
+}
+endsnippet
+
+snippet vref "vue ref" 
+const ${0} = ref(${1})
+endsnippet
+
+snippet vrea "vue reactive" 
+const ${0} = reactive(${1})
+endsnippet
+
+snippet vwa "vue watch"
+watch(${1}, ${0})
+endsnippet
+
+snippet vcom "vue computed"
+computed(${0})
+endsnippet
+
+snippet vins "vue instance"
+const ${0} = getCurrentInstance()
+endsnippet

@@ -128,6 +128,7 @@ call coc#add_extension(
   \ 'coc-eslint',
   \ 'coc-rls',
   \ 'coc-jest',
+  \ 'coc-snippets',
   \ )
 
 " closetag

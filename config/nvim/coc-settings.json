@@ -3,5 +3,6 @@
   "suggest.enablePreview": true,
   "eslint.autoFixOnSave": true,
   "npm.binPath": "yarn",
-  "jest.watch": false
+  "jest.watch": false,
+  "snippets.userSnippetsDirectory": "~/.dotfiles/vim/ultisnips"
 }

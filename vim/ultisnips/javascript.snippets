@@ -1,0 +1,64 @@
+snippet im "import ... from ..."
+import ${0} from '${1}'
+endsnippet
+
+snippet imm "import { ... } from ..."
+import { ${0} } from '${1}'
+endsnippet
+
+snippet de "exports default"
+export default ${0}
+endsnippet
+
+snippet ex "module.exports"
+module.exports = ${0}
+endsnippet
+
+snippet for "for ..." b
+for (${1}) {
+  ${0:${VISUAL}}
+}
+endsnippet
+
+snippet cfn "const function"
+const ${1} = (${2}) => {
+  ${0:${VISUAL}}
+}
+endsnippet
+
+snippet caf "const async function"
+const ${1} = async (${2}) => {
+  ${0:${VISUAL}}
+}
+endsnippet
+
+snippet log "console.log"
+console.log(${0})
+endsnippet
+
+snippet err "console.error"
+console.error(${0})
+endsnippet
+
+snippet jsp "JSON.parse"
+JSON.parse(${0:jstr})
+endsnippet
+
+snippet jss "JSON.stringify"
+JSON.stringify(${0:object})
+endsnippet
+
+snippet np "new Promose"
+new Promise((resolve, reject) => {
+  ${0:${VISUAL}}
+});
+endsnippet
+
+snippet clc "class ... constructor"
+class ${1} {
+  constructor(${2}) {
+    ${0:${VISUAL}}
+  }
+}
+endsnippet
+

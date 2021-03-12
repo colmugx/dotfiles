@@ -1,0 +1,80 @@
+snippet ir "import React from 'react'"
+import React from 'react'
+endsnippet
+
+snippet irc "import React, { Component } from 'react'"
+import React, { Component } from 'react'
+endsnippet
+
+snippet irpc "import React, { PureComponent } from 'react'"
+import React, { Component } from 'react'
+endsnippet
+
+snippet ird "import ReactDOM from 'react-dom'"
+import ReactDOM from 'react-dom'
+endsnippet
+
+snippet rcc "class component"
+class ${1:ClassName} extends Component {
+  render() {
+    return (
+      <div>
+        $1
+      </div>
+    )
+  }
+}
+
+export default $1
+endsnippet
+
+snippet rcpc "class pure component"
+class ${1:ClassName} extends PureComponent {
+  render() {
+    return (
+      <div>
+        $1
+      </div>
+    )
+  }
+}
+
+export default $1
+endsnippet
+
+snippet gdsfp "getDerivedStateFromProps"
+static getDerivedStateFromProps(${1:nextProps, prevState}) {
+  ${1}
+}
+endsnippet
+
+snippet cdm "componentDidMount"
+componentDidMount() {
+  ${1}
+}
+endsnippet
+
+snippet scu "shouldComponentUpdate"
+shouldComponentUpdate(nextProps, nextState) {
+  ${1}
+}
+endsnippet
+
+snippet cwr "componentWillReceiveProps"
+componentWillReceiveProps(nextProps) {
+  ${1}
+}
+endsnippet
+
+snippet cwun "componentWillUnmount"
+componentWillUnmount() {
+  ${1}
+}
+endsnippet
+
+snippet cdc "componentDidCatch"
+componentDidCatch(error, info) {
+  ${1}
+}
+endsnippet
+
