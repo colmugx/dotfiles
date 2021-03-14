@@ -56,10 +56,7 @@ call plug#begin('~/.vim/plugged')
   " Complete
   Plug 'mattn/emmet-vim'
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-
-
-  " Snippets
-  Plug 'VimSnippets/vim-web-snippets'
+  Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'yarn install'}
 
 
   " Others
@@ -67,6 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'wakatime/vim-wakatime'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
+  Plug 'Valloric/MatchTagAlways'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'easymotion/vim-easymotion'
   Plug 'alvan/vim-closetag'
