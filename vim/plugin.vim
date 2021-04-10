@@ -69,8 +69,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
   Plug 'alvan/vim-closetag'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
 
   " text
   Plug 'jceb/vim-orgmode'

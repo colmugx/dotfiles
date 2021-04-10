@@ -117,6 +117,11 @@ nnoremap <silent> <leader>lrn <Plug>(coc-rename)
 nnoremap <silent> <Leader>lf :call CocAction("format")<CR>
 nnoremap <silent> <leader>la :CocAction<CR>
 nnoremap <silent> <leader>lh :call CocAction("doHover")<CR>
+
+nnoremap <silent> <leader>bb :CocList --auto-preview buffers<Cr>
+nnoremap <silent> <leader>bf :CocList --auto-preview files<Cr>
+nnoremap <silent> <leader>bs :CocList grep<Cr>
+
 inoremap <silent><expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 call coc#add_extension(
@@ -129,6 +134,7 @@ call coc#add_extension(
   \ 'coc-rls',
   \ 'coc-jest',
   \ 'coc-snippets',
+  \ 'coc-lists',
   \ )
 
 " closetag
@@ -137,10 +143,6 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.vu
 " vim-surround
 nmap <silent> ,, ysiw
 nmap <silent> ,. cs
-
-" fzf
-nnoremap <silent> <leader>bb :Buffers<Cr>
-nnoremap <silent> <leader>bf :Files<Cr>
 
 " winresizer
 let g:winresizer_start_key = '<Leader>r'
