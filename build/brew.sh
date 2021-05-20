@@ -13,10 +13,10 @@ if test ! $(which brew); then
 fi
 
 cd "$(brew --repo)"
-git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
+git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
 
 cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
+git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 
 brew update
 brew upgrade

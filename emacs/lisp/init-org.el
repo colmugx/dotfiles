@@ -21,7 +21,7 @@
                                ("ABORT" . "#FD9999")))
   (setq org-link-abbrev-alist
     '(
-      ("google" . "http://www.google.com/search?q=")
+      ("google" . "https://www.google.com/search?q=")
       ("mdnjs" . "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/%s")))
 
   ;; output
