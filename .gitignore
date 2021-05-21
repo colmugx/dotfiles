@@ -11,3 +11,6 @@ fish_variables
 lib
 recentf
 org-roam.*
+cache
+install-state.gz
+.pnp.*
