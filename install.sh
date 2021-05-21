@@ -18,13 +18,16 @@ echo "==============================================="
 echo
 
 echo "[0]: all"
-echo "[1]: develop environment"
-echo "[2]: Homebrew (only MacOS)"
+echo "[1]: Develop Environment"
+echo "[2]: Init Node Environment"
+echo "[3]: Install Homebrew (only MacOS)"
+echo "[4]: Install Fonts (only MacOS with Homebrew)"
+echo "[5]: Init Fish Shell"
 
-read -p "press number (default=[0]):" selected
+read -p "press number (default=[1]):" selected
 
 if [ -z "${selected}" ];then
-	selected=0
+	selected=1
 fi
 
 echo -e "\n======================"
@@ -36,12 +39,23 @@ case $selected in
   0)
     source $DOTFILES/build/dev.sh
     source $DOTFILES/build/brew.sh
+    source $DOTFILES/build/fonts.sh
+    source $DOTFILES/build/shell.sh
   ;;
   1)
     source $DOTFILES/build/dev.sh
   ;;
   2)
+    source $DOTFILES/build/npm.sh
+  ;;
+  3)
     source $DOTFILES/build/brew.sh
+  ;;
+  4)
+    source $DOTFILES/build/fonts.sh
+  ;;
+  5)
+    source $DOTFILES/build/shell.sh
   ;;
   *)
     echo "Illegal option!"
