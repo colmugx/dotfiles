@@ -4,5 +4,9 @@
   "eslint.autoFixOnSave": true,
   "npm.binPath": "yarn",
   "jest.watch": false,
-  "snippets.userSnippetsDirectory": "~/.dotfiles/vim/ultisnips"
+  "snippets.userSnippetsDirectory": "~/.dotfiles/vim/ultisnips",
+  "snippets.extends": {
+    "typescript": "javascript",
+    "typescriptreact": "javascriptreact"
+  }
 }

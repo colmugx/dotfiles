@@ -5,6 +5,6 @@ source ~/.dotfiles/config/fish/aliases.fish
 #conda(optional)
 # source ~/miniconda3/etc/fish/conf.d/conda.fish
 
-set -gx EDITOR 'nvim'
-set -gx GIT_EDITOR 'nvim'
+# set -gx EDITOR 'nvim'
+# set -gx GIT_EDITOR 'nvim'
 set -gx TERM 'screen-256color'
