@@ -14,3 +14,4 @@ org-roam.*
 cache
 install-state.gz
 .pnp.*
+config/nvim/plugin
