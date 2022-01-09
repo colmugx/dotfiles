@@ -8,8 +8,6 @@
   (setq truncate-lines nil)
   (setq org-src-fontify-natively t)
   (setq org-highlight-latex-and-related '(native script entities))
-  (setq org-html-head
-    "<link rel='stylesheet' type='text/css' href='https://www.labri.fr/perso/nrougier/GTD/GTD.css'/>")
 
   ;;todo
   (setq org-log-done 'time)
@@ -21,8 +19,9 @@
                                ("ABORT" . "#FD9999")))
   (setq org-link-abbrev-alist
     '(
-      ("google" . "https://www.google.com/search?q=")
-      ("mdnjs" . "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/%s")))
+      ("google" . "http://www.google.com/search?q=")
+      ("mdnjs" . "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/%s")
+      ("douban" . "https://book.douban.com/subject/%s")))
 
   ;; output
   (setq org-html-postamble nil)
@@ -90,6 +89,7 @@
   (setq plantuml-default-exec-mode 'jar)
   (setq plantuml-jar-path "~/.emacs.d/packages/plantuml.jar")
   (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/packages/plantuml.jar"))
+  (setq org-startup-with-inline-images t)
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
   (org-babel-do-load-languages 'org-babel-load-languages 
     '((plantuml . t))))
@@ -119,7 +119,6 @@
     org-roam-server-authenticate nil
     org-roam-server-export-inline-images t
     org-roam-server-serve-files nil
-    org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
     org-roam-server-network-poll t
     org-roam-server-network-arrows nil
     org-roam-server-network-label-truncate t

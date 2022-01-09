@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "build": "tstl",
-    "dev": "tstl --watch"
+    "dev": "tstl --watch",
+    "postinstall": "build"
   },
   "author": "colmugx",
   "license": "ISC",

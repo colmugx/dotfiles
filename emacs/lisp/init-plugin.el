@@ -11,6 +11,7 @@
   (package-install 'use-package))
 
 (eval-and-compile
+  (setq package-check-signature nil)
   (setq use-package-always-ensure t)
 ;;  (setq use-package-always-defer t)
   (setq use-package-expand-minimally t)
