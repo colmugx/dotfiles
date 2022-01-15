@@ -27,4 +27,4 @@ conf.conceallevel = 0
 -- shortcuts
 conf.mouse = "a"
 
-g.mapleader = "<space>"
+g.mapleader = " "
