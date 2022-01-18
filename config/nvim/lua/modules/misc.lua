@@ -2,6 +2,13 @@ local Module = {}
 
 function Module.Setup(use)
 
+    use {
+        "folke/which-key.nvim",
+        config = function()
+          require("which-key").setup {}
+        end
+      }
+
     -- statistics
     use {"wakatime/vim-wakatime"}
 
@@ -59,8 +66,8 @@ function Module.Setup(use)
                 prefer_single_line_comments = true,
             })
 
-            vim.api.nvim_set_keymap("n", "<leader>c<space>", "<Plug>kommentary_line_default", {})
-            vim.api.nvim_set_keymap("v", "<leader>c<space>", "<Plug>kommentary_visual_default<C-c>", {})
+            vim.api.nvim_set_keymap("n", "<Leader>c<space>", "<Plug>kommentary_line_default", {})
+            vim.api.nvim_set_keymap("v", "<Leader>c<space>", "<Plug>kommentary_visual_default<C-c>", {})
         end
     }
 

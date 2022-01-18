@@ -3,13 +3,25 @@ local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.n
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-                                  install_path})
+                                      install_path})
 end
 
 vim.cmd [[packadd packer.nvim]]
 
 local function spec(use)
-    use "wbthomason/packer.nvim"
+    use {
+        "wbthomason/packer.nvim",
+        config = function()
+            vim.api.nvim_set_keymap('n', '<Leader>pu', '<cmd>PackerSync<cr>', {
+                noremap = true,
+                silent = true
+            })
+            vim.api.nvim_set_keymap('n', '<Leader>pc', '<cmd>PackerClean<cr>', {
+                noremap = true,
+                silent = true
+            })
+        end
+    }
 
     -- display
     require("modules.theme").Setup(use)

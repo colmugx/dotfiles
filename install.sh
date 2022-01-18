@@ -18,11 +18,12 @@ echo "==============================================="
 echo
 
 echo "[0]: all"
-echo "[1]: Develop Environment"
+echo "[1]: Develop Environment (neovim)"
 echo "[2]: Init Node Environment"
 echo "[3]: Install Homebrew (only MacOS)"
 echo "[4]: Install Fonts (only MacOS with Homebrew)"
 echo "[5]: Init Fish Shell"
+echo "[6]: Init Vim"
 
 read -p "press number (default=[1]):" selected
 
@@ -56,6 +57,9 @@ case $selected in
   ;;
   5)
     source $DOTFILES/build/shell.sh
+  ;;
+  6)
+    source $DOTFILES/build/vim.sh
   ;;
   *)
     echo "Illegal option!"

@@ -16,13 +16,13 @@ function Module.Setup(use)
         config = function()
             require('telescope').setup {}
 
-            vim.api.nvim_set_keymap('n', '<leader>bs', '<cmd>Telescope live_grep<cr>', {
+            vim.api.nvim_set_keymap('n', '<Leader>bs', '<cmd>Telescope live_grep<cr>', {
                 noremap = true
             })
-            vim.api.nvim_set_keymap('n', '<leader>bb', '<cmd>Telescope buffers<cr>', {
+            vim.api.nvim_set_keymap('n', '<Leader>bb', '<cmd>Telescope buffers<cr>', {
                 noremap = true
             })
-            vim.api.nvim_set_keymap('n', '<leader>bf', '<cmd>Telescope find_files<cr>', {
+            vim.api.nvim_set_keymap('n', '<Leader>bf', '<cmd>Telescope find_files<cr>', {
                 noremap = true
             })
         end
@@ -35,7 +35,7 @@ function Module.Setup(use)
         config = function()
             require("nvim-tree").setup {}
 
-            vim.api.nvim_set_keymap('n', '<leader>ft', '<cmd>NvimTreeToggle<cr>', {
+            vim.api.nvim_set_keymap('n', '<Leader>ft', '<cmd>NvimTreeToggle<cr>', {
                 noremap = true
             })
         end

@@ -14,7 +14,7 @@ function Module.Setup(use)
         "numtostr/BufOnly.nvim",
         cmd = "BufOnly",
         config = function()
-            vim.fn.nvim_set_keymap('n', '<leader>bx', ':BufOnly<CR>', {
+            vim.api.nvim_set_keymap('n', '<Leader>bx', '<cmd>BufOnly<cr>', {
                 noremap = true,
                 silent = true
             })

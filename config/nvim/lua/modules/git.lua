@@ -11,7 +11,7 @@ function Module.Setup(use)
     }, {
         "rhysd/git-messenger.vim",
         config = function()
-            vim.api.nvim_set_keymap("n", "gm", "<CMD>GitMessenger<CR>", {
+            vim.api.nvim_set_keymap("n", "<Leader>gm", "<CMD>GitMessenger<CR>", {
                 noremap = true
             })
         end

@@ -41,11 +41,16 @@ function Module.Setup(use)
     use {
         "hrsh7th/nvim-cmp",
         requires = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline",
-                    "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip"},
+                    "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets"},
         config = function()
             local cmp = require "cmp"
 
             cmp.setup {
+                snippet = {
+                    expand = function(args)
+                        vim.fn["vsnip#anonymous"](args.body)
+                    end
+                },
                 mapping = {
                     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
 
@@ -55,10 +60,12 @@ function Module.Setup(use)
 
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_next_item()
+                            cmp.confirm({
+                                select = true
+                            })
                         elseif vim.fn["vsnip#available"](1) == 1 then
                             feedkey("<Plug>(vsnip-expand-or-jump)", "")
-                        elseif has_words_before() then
+                        elseif has_words_before ~= nil and has_words_before() then
                             cmp.complete()
                         else
                             fallback()
@@ -67,13 +74,13 @@ function Module.Setup(use)
                 },
 
                 sources = {{
-                    name = "nvim_lsp"
-                }, {
-                    name = "luasnip"
-                }, {
-                    name = "buffer"
+                    name = "vsnip"
                 }, {
                     name = "path"
+                }, {
+                    name = "nvim_lsp"
+                }, {
+                    name = "buffer"
                 }}
             }
         end

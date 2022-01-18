@@ -5,8 +5,8 @@ local opts = {
 }
 
 -- buffer
-map('n', '<leader>bd', ':bd', opts)
-map('n', '<leader>bo', ':Bo', opts)
+map('n', '<Leader>bd', ':bd', opts)
+map('n', '<Leader>bo', ':Bo', opts)
 
 -- switch split
 map('n', '<C-h>', '<C-w>h', opts)
@@ -16,5 +16,5 @@ map('n', '<C-l>', '<C-w>l', opts)
 
 -- edit
 map('n', '<C-a>', 'ggVG', opts)
-map('n', '<leader>c', '<C-o>zz', opts)
+map('n', '<Leader>c', '<C-o>zz', opts)
 map('n', '\\', ':noh<CR>', opts)
