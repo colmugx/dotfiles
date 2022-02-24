@@ -33,6 +33,7 @@ local function spec(use)
 
     -- complete
     require("modules.complete").Setup(use)
+    require("modules.lint").Setup(use)
 
     -- language
     require("modules.html").Setup(use)
