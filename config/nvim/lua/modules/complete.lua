@@ -54,12 +54,20 @@ function Module.Setup(use)
         end
     }
 
-    use {"github/copilot.vim"}
+    use {
+        "github/copilot.vim",
+        setup = function()
+            vim.cmd([[
+                let g:copilot_no_tab_map = v:true
+                imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+            ]])
+        end
+    }
 
     use {
         "hrsh7th/nvim-cmp",
         requires = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline",
-                    "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "hrsh7th/cmp-copilot", "rafamadriz/friendly-snippets"},
+                    "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets"},
         config = function()
             local cmp = require "cmp"
 
@@ -71,7 +79,12 @@ function Module.Setup(use)
                 },
                 mapping = {
                     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+                    ["<C-e>"] = cmp.mapping({
+                        i = cmp.mapping.abort(),
+                        c = cmp.mapping.close()
+                    }),
 
+                    ["<C-n>"] = cmp.mapping.select_next_item(),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.confirm({
@@ -86,7 +99,7 @@ function Module.Setup(use)
                     end, {"i", "s"})
                 },
 
-                sources = {{
+                sources = cmp.config.sources {{
                     name = "nvim_lsp"
                 }, {
                     name = "path"
@@ -96,6 +109,24 @@ function Module.Setup(use)
                     name = "buffer"
                 }}
             }
+
+            cmp.setup.cmdline("/", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {{
+                    name = "buffer"
+                }}
+            })
+
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources {{
+                    name = "path"
+                }},
+                {{
+                    name = "cmdline"
+                }}
+            })
+
         end
     }
 
