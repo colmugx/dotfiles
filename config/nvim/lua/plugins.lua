@@ -37,6 +37,7 @@ local function spec(use)
 
     -- language
     require("modules.html").Setup(use)
+    require("modules.svelte").Setup(use)
 
     -- other
     require("modules.git").Setup(use)

@@ -8,6 +8,7 @@ set DOTNET_CLI_TELEMETRY_OPTOUT 1
 #conda(optional)
 # source ~/miniconda3/etc/fish/conf.d/conda.fish
 
-# set -gx EDITOR 'nvim'
+set -gx EDITOR 'nvim'
 # set -gx GIT_EDITOR 'nvim'
 set -gx TERM 'screen-256color'
+fish_add_path /usr/local/opt/openjdk@11/bin

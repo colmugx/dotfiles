@@ -4,7 +4,7 @@ function Module.Setup(use)
 
     use {
         "williamboman/nvim-lsp-installer",
-        requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "hrsh7th/cmp-nvim-lsp"},
+        requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "hrsh7th/cmp-nvim-lsp", "folke/lua-dev.nvim"},
         config = function()
             local buf_map = vim.api.nvim_buf_set_keymap
             local map_opt = {
@@ -33,15 +33,33 @@ function Module.Setup(use)
                                                                                    .make_client_capabilities())
                 }
 
-                server:setup(opts)
+                local servers = {
+                    ["sumneko_lua"] = function()
+                        return require("lua-dev").setup({
+                            lspconfig = vim.tbl_deep_extend("force", default_opts, {
+                                settings = {
+                                    Lua = {
+                                        diagnostics = {
+                                            globals = {"vim"}
+                                        }
+                                    }
+                                }
+                            })
+                        })
+                    end
+                }
+
+                server:setup(servers[server.name] and servers[server.name]() or opts)
             end)
         end
     }
 
+    use {"github/copilot.vim"}
+
     use {
         "hrsh7th/nvim-cmp",
         requires = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline",
-                    "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets"},
+                    "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "hrsh7th/cmp-copilot", "rafamadriz/friendly-snippets"},
         config = function()
             local cmp = require "cmp"
 
@@ -54,19 +72,14 @@ function Module.Setup(use)
                 mapping = {
                     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
 
-                    ["<CR>"] = cmp.mapping.confirm({
-                        select = true
-                    }),
-
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.confirm({
                                 select = true
                             })
                         elseif vim.fn["vsnip#available"](1) == 1 then
-                            feedkey("<Plug>(vsnip-expand-or-jump)", "")
-                        elseif has_words_before ~= nil and has_words_before() then
-                            cmp.complete()
+                            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true,
+                                true, true), "", true)
                         else
                             fallback()
                         end
@@ -74,11 +87,11 @@ function Module.Setup(use)
                 },
 
                 sources = {{
-                    name = "vsnip"
+                    name = "nvim_lsp"
                 }, {
                     name = "path"
                 }, {
-                    name = "nvim_lsp"
+                    name = "vsnip"
                 }, {
                     name = "buffer"
                 }}

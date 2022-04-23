@@ -5,9 +5,9 @@ function Module.Setup(use)
     use {
         "folke/which-key.nvim",
         config = function()
-          require("which-key").setup {}
+            require("which-key").setup {}
         end
-      }
+    }
 
     -- statistics
     use {"wakatime/vim-wakatime"}
@@ -34,7 +34,7 @@ function Module.Setup(use)
             vim.opt.list = true
             vim.opt.listchars:append("space:⋅")
             vim.g.indent_blankline_use_treesitter = true
-            vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
+            vim.g.indent_blankline_filetype_exclude = {"help", "packer"}
         end,
         config = function()
             require("indent_blankline").setup({
@@ -63,11 +63,18 @@ function Module.Setup(use)
         'b3nj5m1n/kommentary',
         config = function()
             require('kommentary.config').configure_language("default", {
-                prefer_single_line_comments = true,
+                prefer_single_line_comments = true
             })
 
             vim.api.nvim_set_keymap("n", "<Leader>c<space>", "<Plug>kommentary_line_default", {})
             vim.api.nvim_set_keymap("v", "<Leader>c<space>", "<Plug>kommentary_visual_default<C-c>", {})
+        end
+    }
+
+    use {
+        "phaazon/hop.nvim",
+        config = function()
+            vim.api.nvim_set_keymap("n", "<Leader><space>f", "<cmd>HopChar1<cr>", {})
         end
     }
 
