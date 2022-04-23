@@ -36,7 +36,7 @@ function Module.Setup(use)
                 local servers = {
                     ["sumneko_lua"] = function()
                         return require("lua-dev").setup({
-                            lspconfig = vim.tbl_deep_extend("force", default_opts, {
+                            lspconfig = vim.tbl_deep_extend("force", opts, {
                                 settings = {
                                     Lua = {
                                         diagnostics = {
