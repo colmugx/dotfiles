@@ -28,6 +28,8 @@ function Module.Setup(use)
                         buf_map(bufnr, "n", "<Leader>ln", "<CMD>lua vim.lsp.buf.rename()<CR>", map_opt)
                         buf_map(bufnr, "n", "<Leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", map_opt)
 
+                        buf_map(bufnr, "n", "<Leader>af", "<CMD>EslintFixAll<CR>", map_opt)
+
                     end,
                     capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol
                                                                                    .make_client_capabilities())
