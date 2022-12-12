@@ -4,7 +4,7 @@ function Module.Setup(use)
 
     use {
         "williamboman/nvim-lsp-installer",
-        requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "hrsh7th/cmp-nvim-lsp", "folke/lua-dev.nvim"},
+        requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim"},
         config = function()
             local buf_map = vim.api.nvim_buf_set_keymap
             local map_opt = {
@@ -31,13 +31,12 @@ function Module.Setup(use)
                         buf_map(bufnr, "n", "<Leader>af", "<CMD>EslintFixAll<CR>", map_opt)
 
                     end,
-                    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol
-                                                                                   .make_client_capabilities())
+                    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
                 }
 
                 local servers = {
                     ["sumneko_lua"] = function()
-                        return require("lua-dev").setup({
+                        return require("neodev").setup({
                             lspconfig = vim.tbl_deep_extend("force", opts, {
                                 settings = {
                                     Lua = {
