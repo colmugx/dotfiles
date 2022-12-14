@@ -78,6 +78,23 @@ function Module.Setup(use)
         end
     }
 
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require("toggleterm").setup({
+          direction = "float"
+        })
+      end
+    }
+
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup {}
+      end
+    }
+
     use {"hotoo/pangu.vim", "tpope/vim-surround"}
 
 end
