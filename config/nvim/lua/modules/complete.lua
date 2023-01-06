@@ -4,7 +4,7 @@ function Module.Setup(use)
 
     use {
         "williamboman/nvim-lsp-installer",
-        requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim"},
+        requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim", "SmiteshP/nvim-navic"},
         config = function()
             local buf_map = vim.api.nvim_buf_set_keymap
             local map_opt = {
@@ -15,10 +15,15 @@ function Module.Setup(use)
             local lsp_installer = require "nvim-lsp-installer"
             lsp_installer.on_server_ready(function(server)
                 local opts = {
-                    on_attach = function(_, bufnr)
+
+                    on_attach = function(client, bufnr)
+                        if client.server_capabilities.documentSymbolProvider then
+                            require("nvim-navic").attach(client, bufnr)
+                        end
+
                         require("lsp_signature").on_attach()
 
-                        buf_map(bufnr, "n", "<Leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", map_opt)
+                        buf_map(bufnr, "n", "<Leader>lf", "<CMD>lua vim.lsp.buf.format { async = true }<CR>", map_opt)
                         buf_map(bufnr, "v", "<Leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", map_opt)
                         buf_map(bufnr, "n", "<Leader>lr", "<CMD>lua require('telescope.builtin').lsp_references()<CR>",
                             map_opt)

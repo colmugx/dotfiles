@@ -56,6 +56,11 @@ function Module.Setup(use)
         "ntpeters/vim-better-whitespace",
         setup = function()
             vim.g.better_whitespace_enabled = true
+        end,
+        config = function()
+            vim.api.nvim_set_keymap('n', '<Leader><space><space>', '<cmd>StripWhitespace<cr>', {
+                noremap = true
+            })
         end
     }
 
@@ -75,6 +80,53 @@ function Module.Setup(use)
         "phaazon/hop.nvim",
         config = function()
             vim.api.nvim_set_keymap("n", "<Leader><space>f", "<cmd>HopChar1<cr>", {})
+        end
+    }
+
+    use {
+        'mg979/vim-visual-multi',
+    }
+
+
+    use {
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig",
+        config = function()
+            require("nvim-navic").setup {
+                icons = {
+                    File          = " ",
+                    Module        = " ",
+                    Namespace     = " ",
+                    Package       = " ",
+                    Class         = " ",
+                    Method        = " ",
+                    Property      = " ",
+                    Field         = " ",
+                    Constructor   = " ",
+                    Enum          = "練",
+                    Interface     = "練",
+                    Function      = " ",
+                    Variable      = " ",
+                    Constant      = " ",
+                    String        = " ",
+                    Number        = " ",
+                    Boolean       = "◩ ",
+                    Array         = " ",
+                    Object        = " ",
+                    Key           = " ",
+                    Null          = "ﳠ ",
+                    EnumMember    = " ",
+                    Struct        = " ",
+                    Event         = " ",
+                    Operator      = " ",
+                    TypeParameter = " ",
+                },
+                highlight = false,
+                separator = " > ",
+                depth_limit = 0,
+                depth_limit_indicator = "..",
+                safe_output = true
+            }
         end
     }
 
