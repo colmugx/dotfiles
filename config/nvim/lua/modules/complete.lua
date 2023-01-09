@@ -95,15 +95,12 @@ function Module.Setup(use)
                     end, {"i", "s"})
                 },
 
-                sources = cmp.config.sources {{
-                    name = "nvim_lsp"
-                }, {
-                    name = "path"
-                }, {
-                    name = "vsnip"
-                }, {
-                    name = "buffer"
-                }}
+                sources = cmp.config.sources {
+                    { name = "vsnip" },
+                    { name = "nvim_lsp" },
+                    { name = "path" },
+                    { name = "buffer" }
+                }
             }
 
             cmp.setup.cmdline("/", {
