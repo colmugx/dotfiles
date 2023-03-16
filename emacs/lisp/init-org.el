@@ -35,10 +35,7 @@
     :states 'normal
     "t s" 'org-todo
     "SPC t r" 'org-update-statistics-cookie
-    "SPC a c" 'org-insert-structure-template
-
-    "r t a" 'org-roam-tag-add
-    "r t d" 'org-roam-tag-delete))
+    "SPC a c" 'org-insert-structure-template))
 
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
@@ -57,8 +54,7 @@
   :config
   (add-hook 'dired-mode-hook 'org-download-enable)
   (setq org-download-method 'attach)
-  (setq org-download-display-inline-images 'posframe)
-  (setq org-download-image-dir (concat dotfiles-roam-directory "/assets")))
+  (setq org-download-display-inline-images 'posframe))
 
 (use-package org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
@@ -91,43 +87,7 @@
   (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/packages/plantuml.jar"))
   (setq org-startup-with-inline-images t)
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-  (org-babel-do-load-languages 'org-babel-load-languages 
+  (org-babel-do-load-languages 'org-babel-load-languages
     '((plantuml . t))))
 
-(use-package org-roam
-    :after org
-    :diminish
-    :custom
-    (org-roam-directory dotfiles-roam-directory)
-    (org-roam-db-location (concat dotfiles-roam-directory "/org-roam.db"))
-    :hook (after-init . org-roam-mode)
-    :bind (:map org-roam-mode-map
-           (("C-c n l" . org-roam)
-            ("C-c n f" . org-roam-find-file)
-            ("C-c n g" . org-roam-graph))
-           :map org-mode-map
-           (("C-c n i" . org-roam-insert))
-           (("C-c n I" . org-roam-insert-immediate)))
-    :config
-    (unless (file-exists-p org-roam-directory)
-      (make-directory org-roam-directory)))
-
-(use-package org-roam-server
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-    org-roam-server-port 9090
-    org-roam-server-authenticate nil
-    org-roam-server-export-inline-images t
-    org-roam-server-serve-files nil
-    org-roam-server-network-poll t
-    org-roam-server-network-arrows nil
-    org-roam-server-network-label-truncate t
-    org-roam-server-network-label-truncate-length 60
-    org-roam-server-network-label-wrap-length 20))
-
-(use-package org-roam-protocol
-  :after org-roam org-roam-server
-  :ensure nil)
-
-(require 'init-capture)
 (provide 'init-org)

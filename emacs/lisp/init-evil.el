@@ -25,7 +25,8 @@
 
 ;; which-key 空格提示
 (use-package which-key
-  :config
-  (which-key-mode 1))
+  :hook (after-init . which-key-mode)
+  :init (setq which-key-max-description-length 30
+              which-key-show-remaining-keys t))
 
 (provide 'init-evil)

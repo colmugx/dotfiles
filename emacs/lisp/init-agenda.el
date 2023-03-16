@@ -5,11 +5,6 @@
   :config
   (setq org-agenda-tags-column -16)
   (setq org-agenda-block-separator "---")
-  (setq org-agenda-files
-    (list
-      (concat dotfiles-roam-directory "/books.org")
-      (concat dotfiles-org-directory "/records.org")
-      (concat dotfiles-roam-directory "/products")))
   (setq org-agenda-include-diary t))
 
   ;; keybingds
@@ -17,7 +12,7 @@
     :keymaps 'override
     :states '(normal visual emacs motion)
     "a a" 'org-agenda)
-  
+
   ;; custom
   (setq org-agenda-custom-commands
   '(
@@ -29,7 +24,7 @@
     ("g" "目标计划"
       ((agenda ""
         ((org-agenda-span 'fortnight)))
-       (tags "+GTYPE=\"Year\"" 
+       (tags "+GTYPE=\"Year\""
         ((org-agenda-overriding-header "年计划")))
        (tags-todo "+GTYPE=\"Quarter\"+DEADLINE<=\"<+90d>\""
         ((org-agenda-overriding-header "季度计划")))
@@ -51,10 +46,7 @@
        (todo "UNREAD"
         ((org-agenda-overriding-header "未阅读")))
        (todo "PAUSE"
-        ((org-agenda-overriding-header "搁置"))))
-      ((org-agenda-files
-        (list
-         (concat dotfiles-roam-directory "/books.org")))))
+        ((org-agenda-overriding-header "搁置")))))
   ))
 
 (provide 'init-agenda)

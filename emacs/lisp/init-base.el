@@ -24,18 +24,6 @@
 ;; 关闭备份
 (setq make-backup-files nil)
 
-;; treemacs 文件树
-(use-package treemacs
-  :defer t
-  :config
-  (setq treemacs–icon-size 14)
-  (setq treemacs-width 30))
-
-(use-package treemacs-evil
-  :after treemacs evil)
-
-(use-package treemacs-projectile
-  :after treemacs projectile)
 
 ;; dashboard 启动面板
 (use-package dashboard
@@ -53,4 +41,4 @@
   (setq epa-pinentry-mode 'loopback)
   (setq epa-file-cache-passphrase-for-symmetric-encryption t))
 
-(provide 'init-basic)
+(provide 'init-base)
