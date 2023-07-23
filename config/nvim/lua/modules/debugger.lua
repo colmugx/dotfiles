@@ -1,11 +1,6 @@
-local Module = {}
-
-function Module.Setup(use)
-
-    use {"mfussenegger/nvim-dap"}
-
-    use {"Pocco81/dap-buddy.nvim"}
-
-end
+local Module = {
+    "mfussenegger/nvim-dap",
+    "Pocco81/dap-buddy.nvim"
+}
 
 return Module

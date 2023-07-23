@@ -1,58 +1,14 @@
--- install packer
-local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-                                      install_path})
+-- install lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-
-vim.cmd [[packadd packer.nvim]]
-
-local function spec(use)
-    use {
-        "wbthomason/packer.nvim",
-        config = function()
-            vim.api.nvim_set_keymap('n', '<Leader>pu', '<cmd>PackerSync<cr>', {
-                noremap = true,
-                silent = true
-            })
-            vim.api.nvim_set_keymap('n', '<Leader>pc', '<cmd>PackerClean<cr>', {
-                noremap = true,
-                silent = true
-            })
-        end
-    }
-
-    -- display
-    require("modules.theme").Setup(use)
-    require("modules.lualine").Setup(use)
-    require("modules.buffer").Setup(use)
-
-    -- files
-    require("modules.filetree").Setup(use)
-
-    -- complete
-    require("modules.complete").Setup(use)
-    require("modules.lint").Setup(use)
-
-    -- language
-    require("modules.html").Setup(use)
-    require("modules.svelte").Setup(use)
-
-    -- other
-    require("modules.git").Setup(use)
-    require("modules.misc").Setup(use)
-
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end
-
-require("packer").startup({
-    spec,
-    config = {
-        display = {
-            open_fn = require('packer.util').float
-        }
-    }
-})
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup("modules")

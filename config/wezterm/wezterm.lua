@@ -6,7 +6,7 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   default_cursor_style = "SteadyBlock",
 
-  font = wezterm.font("JetBrains Mono"),
+  font = wezterm.font("JetBrainsMono Nerd Font Mono"),
   font_size = 13.0,
 
   window_padding = {

@@ -5,7 +5,7 @@ brew tap homebrew/cask-fonts
 
 list=(
     font-fira-code-nerd-font
-    font-cascadia-code
+    font-jetbrains-mono-nerd-font
 )
 
 for item in "${list[@]}"; do
