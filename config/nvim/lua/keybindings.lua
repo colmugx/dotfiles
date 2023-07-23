@@ -4,6 +4,10 @@ local opts = {
     silent = false
 }
 
+-- increment / decrement
+map('n', '+', '<C-a>', opts)
+map('n', '-', '<C-x>', opts)
+
 -- buffer
 map('n', '<Leader>bd', '<cmd>bd<cr>', opts)
 map('n', '<Leader>bo', '<cmd>Bo<cr>', opts)
@@ -18,3 +22,4 @@ map('n', '<C-l>', '<C-w>l', opts)
 map('n', '<C-a>', 'ggVG', opts)
 map('n', '<Leader>c', '<C-o>zz', opts)
 map('n', '\\', '<cmd>noh<cr>', opts)
+map('n', 'dw', 'vbd', opts)

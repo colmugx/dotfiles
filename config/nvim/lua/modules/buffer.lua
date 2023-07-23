@@ -6,6 +6,7 @@ local Module = {{
     end
 }, {
     "numtostr/BufOnly.nvim",
+    event = "VeryLazy",
     cmd = "BufOnly",
     config = function()
         vim.api.nvim_set_keymap('n', '<Leader>bx', '<cmd>BufOnly<cr>', {

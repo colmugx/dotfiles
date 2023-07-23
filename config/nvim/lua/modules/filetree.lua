@@ -34,7 +34,6 @@ local Module = {{
     end
 }, {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "NeoTreeFocusToggle",
     dependencies = {"nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim"},
     config = {
         window = {
@@ -52,7 +51,7 @@ local Module = {{
     },
     keys = {{
         "<Leader>ft",
-        "<CMD>NeoTreeFocusToggle<CR>",
+        "<CMD>:Neotree toggle<CR>",
         desc = "NeoTree"
     }}
 }}
