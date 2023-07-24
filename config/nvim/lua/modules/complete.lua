@@ -121,7 +121,7 @@ local Module = {
       "SmiteshP/nvim-navic",
       "jose-elias-alvarez/null-ls.nvim",
       "jose-elias-alvarez/nvim-lsp-ts-utils",
-      "tami5/lspsaga.nvim"
+      "nvimdev/lspsaga.nvim"
     },
     config = function()
       local map_opt = {
@@ -177,7 +177,11 @@ local Module = {
             require("nvim-navic").attach(client, bufnr)
           end
 
-          require("lspsaga").setup()
+          require("lspsaga").setup {
+            ui = {
+              kind = require("onenord.integrations.lspsaga").custom_kind(),
+            },
+          }
           require("lsp_signature").on_attach()
 
           vim.diagnostic.config {

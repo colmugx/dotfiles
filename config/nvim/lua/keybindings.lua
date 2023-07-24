@@ -1,7 +1,7 @@
 local map = vim.api.nvim_set_keymap
 local opts = {
     noremap = true,
-    silent = false
+    silent = true
 }
 
 -- increment / decrement
@@ -23,3 +23,8 @@ map('n', '<C-a>', 'ggVG', opts)
 map('n', '<Leader>c', '<C-o>zz', opts)
 map('n', '\\', '<cmd>noh<cr>', opts)
 map('n', 'dw', 'vbd', opts)
+
+-- spell check
+map('n', '<Leader>wr', 'z=', opts)
+map('n', '<Leader>wt', 'zg', opts)
+map('n', '<Leader>we', 'zw', opts)

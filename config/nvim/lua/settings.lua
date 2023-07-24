@@ -27,4 +27,9 @@ conf.conceallevel = 0
 -- shortcuts
 conf.mouse = "a"
 
+-- spell check
+conf.spelloptions = "camel"
+conf.spelllang = "en_gb,cjk"
+conf.spell = true
+
 g.mapleader = " "
