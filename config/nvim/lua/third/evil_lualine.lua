@@ -7,17 +7,17 @@ local navic = require('nvim-navic')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  bg       = '#2E3440',
+  fg       = '#C8D0E0',
+  yellow   = '#EBCB8B',
+  cyan     = '#88C0D0',
+  darkblue = '#5E81AC',
+  green    = '#A3BE8C',
+  orange   = '#D08F70',
+  violet   = '#E44675',
+  magenta  = '#B988B0',
+  blue     = '#81A1C1',
+  red      = '#DE878F',
 }
 
 local conditions = {
@@ -40,7 +40,10 @@ local config = {
     -- Disable sections and component separators
     component_separators = '',
     section_separators = '',
-    theme = 'onenord',
+    theme = {
+      normal = { c = { fg = colors.fg, bg = colors.bg } },
+      inactive = { c = { fg = colors.fg, bg = colors.bg } },
+    },
   },
   sections = {
     -- these are to remove the defaults

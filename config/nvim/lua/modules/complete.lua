@@ -3,7 +3,8 @@ local Module = {
     "hrsh7th/nvim-cmp",
     event = "BufReadPre",
     dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline",
-      "onsails/lspkind-nvim", "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets" },
+      "onsails/lspkind-nvim", "hrsh7th/cmp-vsnip", "hrsh7th/vim-vsnip", "rafamadriz/friendly-snippets",
+      "f3fora/cmp-spell" },
     config = function()
       local cmp = require "cmp"
       local lspkind = require "lspkind"
@@ -80,15 +81,24 @@ local Module = {
           end, { "i", "s" })
         },
 
-        sources = cmp.config.sources { {
-          name = "vsnip"
-        }, {
-          name = "nvim_lsp"
-        }, {
-          name = "path"
-        }, {
-          name = "buffer"
-        } }
+        sources = cmp.config.sources {
+          {
+            name = "vsnip"
+          },
+          {
+            name = "nvim_lsp",
+            trigger_characters = { '-' }
+          },
+          {
+            name = "path"
+          },
+          {
+            name = "spell"
+          },
+          {
+            name = "buffer"
+          }
+        }
       }
 
       cmp.setup.cmdline({ '/', '?' }, {
@@ -133,7 +143,7 @@ local Module = {
 
       require("mason").setup()
       require("mason-lspconfig").setup {
-        ensure_installed = { "tsserver", "lua_ls", "tailwindcss", "rust_analyzer" },
+        ensure_installed = { "tsserver", "lua_ls", "unocss", "rust_analyzer" },
         automatic_installation = true
       }
 
@@ -142,7 +152,7 @@ local Module = {
         capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilites)
       })
 
-      require("neodev").setup({})
+      require("neodev").setup()
       lsp.lua_ls.setup({
         ettings = {
           Lua = {
@@ -153,20 +163,28 @@ local Module = {
         }
       })
 
-      lsp.tsserver.setup({
+      lsp.tsserver.setup {
         on_attach = function(client, bufnr)
           local tsutils = require "nvim-lsp-ts-utils"
           tsutils.setup({})
           tsutils.setup_client(client)
         end
-      })
+      }
+
+      lsp.unocss.setup {}
+      lsp.tailwindcss.setup {}
 
       local null_ls = require "null-ls"
       null_ls.setup {
-        sources = { null_ls.builtins.code_actions.eslint_d, null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.completion.spell, null_ls.builtins.completion.vsnip,
-          null_ls.builtins.diagnostics.eslint_d, null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.eslint_d },
+        sources = {
+          null_ls.builtins.code_actions.eslint_d,
+          null_ls.builtins.code_actions.refactoring,
+          null_ls.builtins.completion.spell,
+          null_ls.builtins.completion.vsnip,
+          null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.eslint_d
+        },
 
         on_attach = function(client, bufnr)
           local function buf_map(...)
@@ -177,11 +195,11 @@ local Module = {
             require("nvim-navic").attach(client, bufnr)
           end
 
-          require("lspsaga").setup {
-            ui = {
-              kind = require("onenord.integrations.lspsaga").custom_kind(),
-            },
-          }
+          -- require("lspsaga").setup {
+          --   ui = {
+          --     kind = require("onenord.integrations.lspsaga").custom_kind(),
+          --   },
+          -- }
           require("lsp_signature").on_attach()
 
           vim.diagnostic.config {
