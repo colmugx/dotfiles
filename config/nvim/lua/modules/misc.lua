@@ -1,25 +1,32 @@
 local Module = {
   {
     "folke/which-key.nvim",
+    event = "VeryLazy",
     config = function()
       require("which-key").setup {}
     end
   },
-  "wakatime/vim-wakatime",
+  {
+    "wakatime/vim-wakatime",
+    event = "VeryLazy"
+  },
   {
     "karb94/neoscroll.nvim",
+    event = "VeryLazy",
     config = function()
       require("neoscroll").setup()
     end
   },
   {
     "windwp/nvim-autopairs",
+    event = "BufReadPre",
     config = function()
       require("nvim-autopairs").setup()
     end
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
     setup = function()
       vim.opt.list = true
       vim.opt.listchars:append("space:⋅")
@@ -36,6 +43,7 @@ local Module = {
   },
   {
     "simeji/winresizer",
+    event = "VeryLazy",
     config = function()
       vim.g.winresizer_start_key = '<Leader>r'
     end
@@ -45,14 +53,13 @@ local Module = {
     setup = function()
       vim.g.better_whitespace_enabled = true
     end,
-    config = function()
-      vim.api.nvim_set_keymap('n', '<Leader><space><space>', '<cmd>StripWhitespace<cr>', {
-        noremap = true
-      })
-    end
+    keys = {
+      { "<Leader><space><space>", "<CMD>StripWhitespace<CR>", desc = "Strip white space" }
+    }
   },
   {
     'b3nj5m1n/kommentary',
+    event = "VeryLazy",
     config = function()
       require('kommentary.config').configure_language("default", {
         prefer_single_line_comments = true

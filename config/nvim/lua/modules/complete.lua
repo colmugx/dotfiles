@@ -1,5 +1,12 @@
 local Module = {
   {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      use_diagnostic_signs = true
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "BufReadPre",
     dependencies = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline",
@@ -38,6 +45,9 @@ local Module = {
       }
 
       cmp.setup {
+        completion = {
+          keyword_length = 0
+        },
         formatting = {
           format = lspkind.cmp_format {
             symbol_map = symbol_map,
@@ -213,8 +223,7 @@ local Module = {
           buf_map("n", "<Leader>lh", "<CMD>lua vim.lsp.buf.hover()<CR>", map_opt)
           buf_map("n", "<Leader>ln", "<CMD>lua vim.lsp.buf.rename()<CR>", map_opt)
           buf_map("n", "<Leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", map_opt)
-
-          buf_map("n", "<Leader>af", "<CMD>EslintFixAll<CR>", map_opt)
+          buf_map("n", "<Leader>le", "<CMD>lua vim.diagnostic.open_float()<CR>", map_opt)
         end
       }
     end
