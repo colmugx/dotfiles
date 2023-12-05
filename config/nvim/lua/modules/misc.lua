@@ -26,6 +26,7 @@ local Module = {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     event = "BufReadPre",
     setup = function()
       vim.opt.list = true
@@ -34,11 +35,7 @@ local Module = {
       vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
     end,
     config = function()
-      require("indent_blankline").setup({
-        show_current_context = true,
-        show_current_context_start = false,
-        space_char_blankline = " "
-      })
+      require("ibl").setup {}
     end
   },
   {

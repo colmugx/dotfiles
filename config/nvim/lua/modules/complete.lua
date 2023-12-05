@@ -139,9 +139,8 @@ local Module = {
       "ray-x/lsp_signature.nvim",
       "folke/neodev.nvim",
       "SmiteshP/nvim-navic",
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       "jose-elias-alvarez/nvim-lsp-ts-utils",
-      "nvimdev/lspsaga.nvim"
     },
     config = function()
       local map_opt = {
@@ -205,11 +204,6 @@ local Module = {
             require("nvim-navic").attach(client, bufnr)
           end
 
-          -- require("lspsaga").setup {
-          --   ui = {
-          --     kind = require("onenord.integrations.lspsaga").custom_kind(),
-          --   },
-          -- }
           require("lsp_signature").on_attach()
 
           vim.diagnostic.config {
@@ -226,6 +220,13 @@ local Module = {
           buf_map("n", "<Leader>le", "<CMD>lua vim.diagnostic.open_float()<CR>", map_opt)
         end
       }
+    end
+  },
+  {
+    "nvimdev/lspsaga.nvim",
+    event = "lspAttach",
+    config = function()
+      require("lspsaga").setup {}
     end
   }
 }
