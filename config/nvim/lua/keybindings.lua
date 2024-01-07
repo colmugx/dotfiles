@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = {
     noremap = true,
     silent = true
@@ -28,3 +28,7 @@ map('n', 'dw', 'vbd', opts)
 map('n', '<Leader>wr', 'z=', opts)
 map('n', '<Leader>wt', 'zg', opts)
 map('n', '<Leader>we', 'zw', opts)
+
+-- navigate
+map('n', '<Leader>np', '<c-o>', opts)
+map('n', '<Leader>nn', '<c-i>', opts)

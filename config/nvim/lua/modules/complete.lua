@@ -131,12 +131,34 @@ local Module = {
   {
     "williamboman/mason.nvim",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+          {
+            ensure_installed = { "tsserver", "lua_ls", "unocss", "rust_analyzer" },
+            automatic_installation = true,
+          }
+        },
+        config = function()
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          local lsp = require "lspconfig"
+          require("mason-lspconfig").setup_handlers({
+            function(svr)
+              lsp[svr].setup({
+                capabilities = capabilities,
+              })
+            end,
+
+          })
+        end
+
+      },
+      {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = {}
+      }
     },
-    opts = {
-      ensure_installed = { "tsserver", "lua_ls", "unocss", "rust_analyzer" },
-      automatic_installation = true,
-    },
+    opts = {}
   },
   {
     "neovim/nvim-lspconfig",
@@ -147,26 +169,36 @@ local Module = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "ray-x/lsp_signature.nvim",
-      "folke/neodev.nvim",
       "SmiteshP/nvim-navic",
       "nvimtools/none-ls.nvim",
       "jose-elias-alvarez/nvim-lsp-ts-utils",
+      {
+        "folke/neodev.nvim",
+        ft = { "lua" }
+      },
+
+      -- dap
+      "mfussenegger/nvim-dap",
+      "nvim-telescope/telescope-dap.nvim"
     },
     config = function()
+      require("telescope").load_extension("dap")
+
       local map_opt = {
         noremap = true,
         silent = true
       }
 
       local lsp = require "lspconfig"
-      local util = require "lspconfig.util"
 
       local client_capabilites = vim.lsp.protocol.make_client_capabilities()
       lsp.util.default_config = vim.tbl_extend("force", lsp.util.default_config, {
         capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilites)
       })
 
-      require("neodev").setup()
+      require("neodev").setup {
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      }
       lsp.lua_ls.setup({
         ettings = {
           Lua = {
@@ -176,20 +208,7 @@ local Module = {
           }
         }
       })
-
-      lsp.tsserver.setup {
-        on_attach = function(client, bufnr)
-          local tsutils = require "nvim-lsp-ts-utils"
-          tsutils.setup({})
-          tsutils.setup_client(client)
-        end
-      }
-
       lsp.unocss.setup {}
-
-      lsp.rust_analyzer.setup {
-        root_dir = util.root_pattern("Cargo.toml")
-      }
 
       local null_ls = require "null-ls"
       null_ls.setup {
@@ -204,9 +223,7 @@ local Module = {
         },
 
         on_attach = function(client, bufnr)
-          local function buf_map(...)
-            vim.api.nvim_buf_set_keymap(bufnr, ...)
-          end
+          local keymap = vim.keymap
 
           if client.server_capabilities.documentSymbolProvider then
             require("nvim-navic").attach(client, bufnr)
@@ -218,24 +235,31 @@ local Module = {
             visual_text = true
           }
 
-          buf_map("n", "<Leader>lf", "<CMD>lua vim.lsp.buf.format { async = true }<CR>", map_opt)
-          buf_map("v", "<Leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", map_opt)
-          buf_map("n", "<Leader>lr", "<CMD>lua require('telescope.builtin').lsp_references()<CR>", map_opt)
-          buf_map("n", "<Leader>ld", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", map_opt)
-          buf_map("n", "<Leader>lh", "<CMD>lua vim.lsp.buf.hover()<CR>", map_opt)
-          buf_map("n", "<Leader>ln", "<CMD>lua vim.lsp.buf.rename()<CR>", map_opt)
-          buf_map("n", "<Leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", map_opt)
-          buf_map("n", "<Leader>le", "<CMD>lua vim.diagnostic.open_float()<CR>", map_opt)
+          keymap.set("n", "<Leader>lf", "<CMD>lua vim.lsp.buf.format { async = true }<CR>", map_opt)
+          keymap.set("v", "<Leader>lf", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", map_opt)
+          keymap.set("n", "<Leader>lr", "<CMD>lua require('telescope.builtin').lsp_references()<CR>", map_opt)
+          keymap.set("n", "<Leader>ld", "<CMD>Lspsaga goto_definition<CR>", map_opt)
+          keymap.set("n", "<Leader>lh", "<CMD>Lspsaga hover_doc<CR>", map_opt)
+          keymap.set("n", "<Leader>ln", "<CMD>Lspsaga rename<CR>", map_opt)
+          keymap.set("n", "<Leader>la", "<CMD>Lspsaga code_action<CR>", map_opt)
+          keymap.set("n", "<Leader>le", "<CMD>lua vim.diagnostic.open_float()<CR>", map_opt)
+          keymap.set("n", "<Leader>lo", "<CMD>Lspsaga outline<CR>", map_opt)
         end
       }
     end
   },
   {
     "nvimdev/lspsaga.nvim",
+    dependenices = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'
+    },
     event = "lspAttach",
-    config = function()
-      require("lspsaga").setup {}
-    end
+    opts = {
+      lightbulb = {
+        sign = false
+      },
+    },
   }
 }
 
