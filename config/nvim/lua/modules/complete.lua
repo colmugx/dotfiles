@@ -129,6 +129,16 @@ local Module = {
     end
   },
   {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
+    opts = {
+      ensure_installed = { "tsserver", "lua_ls", "unocss", "rust_analyzer" },
+      automatic_installation = true,
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     build = ":MasonUpdate",
@@ -149,12 +159,7 @@ local Module = {
       }
 
       local lsp = require "lspconfig"
-
-      require("mason").setup()
-      require("mason-lspconfig").setup {
-        ensure_installed = { "tsserver", "lua_ls", "unocss", "rust_analyzer" },
-        automatic_installation = true
-      }
+      local util = require "lspconfig.util"
 
       local client_capabilites = vim.lsp.protocol.make_client_capabilities()
       lsp.util.default_config = vim.tbl_extend("force", lsp.util.default_config, {
@@ -181,7 +186,10 @@ local Module = {
       }
 
       lsp.unocss.setup {}
-      lsp.tailwindcss.setup {}
+
+      lsp.rust_analyzer.setup {
+        root_dir = util.root_pattern("Cargo.toml")
+      }
 
       local null_ls = require "null-ls"
       null_ls.setup {
