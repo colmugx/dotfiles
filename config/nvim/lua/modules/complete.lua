@@ -45,23 +45,9 @@ local Module = {
       }
 
       cmp.setup {
-        completion = {
-          keyword_length = 1,
-        },
         formatting = {
           format = lspkind.cmp_format {
             symbol_map = symbol_map,
-            before = function(entry, vim_item)
-              vim_item.kind = string.format("%s %s", symbol_map[vim_item.kind], vim_item.kind)
-              vim_item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                vsnip = "[Snip]",
-                nvim_lua = "[Lua]",
-                path = "[Path]",
-              })[entry.source.name]
-              return vim_item
-            end,
           }
         },
         snippet = {
@@ -101,7 +87,7 @@ local Module = {
           },
           {
             name = "nvim_lsp",
-            trigger_characters = { '-' }
+            trigger_characters = { '.', ":" }
           },
           {
             name = "path"
