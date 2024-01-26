@@ -1,9 +1,10 @@
 local wezterm = require "wezterm"
 
+require("status-bar").setup()
+
 return {
   color_scheme = "nord",
   -- window_decorations = "RESIZE",
-  hide_tab_bar_if_only_one_tab = true,
   default_cursor_style = "SteadyBlock",
 
   font = wezterm.font_with_fallback {

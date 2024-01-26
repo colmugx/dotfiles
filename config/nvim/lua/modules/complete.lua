@@ -46,7 +46,7 @@ local Module = {
 
       cmp.setup {
         completion = {
-          keyword_length = 0
+          keyword_length = 1,
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -71,11 +71,8 @@ local Module = {
         },
         mapping = {
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-          ["<C-e>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close()
-          }),
-
+          ['<C-e>'] = cmp.mapping.abort(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -88,7 +85,14 @@ local Module = {
             else
               fallback()
             end
-          end, { "i", "s" })
+          end, { "i", "s" }),
+          -- ["<Enter>"] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     cmp.confirm({
+          --       select = true
+          --     })
+          --   end
+          -- end, { "i", "s" }),
         },
 
         sources = cmp.config.sources {

@@ -33,3 +33,4 @@ conf.spelllang     = "en_gb,cjk"
 conf.spell         = true
 
 g.mapleader        = " "
+
