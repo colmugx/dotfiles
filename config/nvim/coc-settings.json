@@ -2,7 +2,7 @@
   "suggest.triggerAfterInsertEnter": true,
   "suggest.enablePreview": true,
   "eslint.autoFixOnSave": true,
-  "npm.binPath": "yarn",
+  "npm.binPath": "pnpm",
   "jest.watch": false,
   "snippets.userSnippetsDirectory": "~/.dotfiles/vim/ultisnips",
   "snippets.extends": {

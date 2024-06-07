@@ -1,4 +1,3 @@
-;; company
 (use-package company
   :diminish
   :hook (after-init . global-company-mode)
@@ -18,14 +17,17 @@
         company-box-doc-delay 0.1))
 
 (use-package lsp-mode
-  :diminish
+  :commands (lsp lsp-symbol-highlight)
   :autoload lsp-enable-which-key-integration
-  :hook ((lsp-mode . (lambda ()
-                          (lsp-enable-which-key-integration)))))
+  :hook (
+         (js2-mode . lsp)
+         (typescript-mode . lsp)))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :init
+  (progn (setq lsp-ui-doc-enable t)))
 
 (use-package lsp-ivy
   :after lsp-mode

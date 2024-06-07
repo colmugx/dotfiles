@@ -7,15 +7,15 @@
 
 ;;require
 (require 'init-plugin)
+(require 'init-evil)
 
 (require 'init-base)
 (require 'init-ui)
 (require 'init-tool)
 
-(require 'init-evil)
 (require 'init-treemacs)
 (require 'init-complete)
-(require 'init-ivy)
+(require 'init-vertico)
 
 (require 'init-flycheck)
 (require 'init-vcs)
