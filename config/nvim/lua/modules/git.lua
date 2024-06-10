@@ -1,4 +1,5 @@
 local Module = {
+  { "lewis6991/gitsigns.nvim" },
   {
     "rhysd/git-messenger.vim",
     config = function()
@@ -17,7 +18,7 @@ local Module = {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
-    dependencies = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" },
+    dependencies = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = {
       kind = "split",
       integrations = {
