@@ -11,4 +11,6 @@ media=(
 
 sketchybar --add item media right \
            --set media "${media[@]}" \
+           --add bracket media_group media \
+           --set media_group "${bracket_defaults[@]}" \
            --subscribe media media_change
