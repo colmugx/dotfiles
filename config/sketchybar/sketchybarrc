@@ -20,10 +20,11 @@ sketchybar --bar "${bar[@]}" --default "${defaults[@]}"
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/yabai.sh"
 source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/mail.sh"
 
 # Center
 # source "$ITEM_DIR/spotify.sh"
+source "$ITEM_DIR/front_app.sh"
 
 # Right
 source "$ITEM_DIR/control_center.sh"

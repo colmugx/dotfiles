@@ -1,16 +1,26 @@
-media=(
-  icon.background.image.scale=0.8
-  icon.background.drawing=on
-  icon.background.image=media.artwork
-  icon.background.image.corner_radius=9
+#!/bin/env/bash
+
+# Load global styles, colors and icons
+source "$CONFIG_DIR/configs/styles.sh"
+
+music=(
+  "${bracket_defaults[@]}"
   script="$PLUGIN_DIR/media.sh"
-  label.max_chars=15
-  scroll_texts=on
+  popup.align=center
+  padding_left=0
+  label.padding_right=$PADDINGS
+  padding_right=$(($PADDINGS * 2))
+  drawing=off
+  label="Loading…"
+  background.image=media.artwork
+  background.image.scale=0.75
+  background.image.corner_radius=$PADDINGS
+  icon.padding_left=20
+  label.max_chars=38
   updates=on
+  --subscribe music media_change
 )
 
-sketchybar --add item media right \
-           --set media "${media[@]}" \
-           --add bracket media_group media \
-           --set media_group "${bracket_defaults[@]}" \
-           --subscribe media media_change
+sketchybar                       \
+  --add item music right         \
+  --set      music "${music[@]}"

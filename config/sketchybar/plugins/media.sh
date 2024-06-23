@@ -1,20 +1,11 @@
 #!/bin/bash
 
-update_media() {
-  STATE="$(echo "$INFO" | jq -r '.state')"
+PLAYER_STATE="$(echo "$INFO" | jq -r '.state')"
+CURRENT_ARTIST="$(echo "$INFO" | jq -r '.artist')"
+CURRENT_SONG="$(echo "$INFO" | jq -r '.title')"
 
-  if [ "$STATE" = "playing" ]; then
-    APP=$(echo "$INFO" | jq -r '.app')
-    MEDIA="$(echo "$INFO" | jq -r '.title + " - " + .artist')"
-    sketchybar --set $NAME label="$MEDIA" drawing=on \
-               --set media_group background.drawing=on
-  else
-    sketchybar --set $NAME drawing=off \
-               --set media_group background.drawing=off
-  fi
-}
-
-case "$SENDER" in
-  "media_change") update_media
-  ;;
-esac
+if [ "$PLAYER_STATE" = "playing" ]; then
+  sketchybar --set $NAME drawing=on label="$CURRENT_ARTIST: $CURRENT_SONG"
+else
+  sketchybar --set $NAME drawing=off
+fi
