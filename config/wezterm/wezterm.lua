@@ -17,6 +17,8 @@ return {
   window_padding = {
     top = 0,
     bottom = 0,
-  }
+  },
+
+  window_decorations = "RESIZE"
 }
 
