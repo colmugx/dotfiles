@@ -21,6 +21,7 @@ source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/yabai.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/mail.sh"
+source "$ITEM_DIR/slack.sh"
 
 # Center
 # source "$ITEM_DIR/spotify.sh"
