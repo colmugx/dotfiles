@@ -2,7 +2,7 @@ source "$CONFIG_DIR/configs/colors.sh"
 source "$CONFIG_DIR/configs/icons.sh"
 
 FONT="JetBrainsMono Nerd Font"
-PADDINGS=3
+PADDINGS=6
 
 # Setting up the general bar appearance of the bar
 bar=(
@@ -46,4 +46,21 @@ bracket_defaults=(
   background.color=$BAR_COLOR
   blur_radius=32
   background.corner_radius=6
+)
+
+notification_defaults=(
+  drawing=off
+  update_freq=120
+  updates=on
+  background.color="$(getcolor white 25)"
+  # background.height=16
+  background.corner_radius=6
+  icon.font.size=13
+  icon.padding_left=$PADDINGS
+  icon.padding_right=0
+  icon.color="$(getcolor black 75)"
+  label.color="$(getcolor black 75)"
+  label.padding_right=$PADDINGS
+  label.font.size=13
+  label.font.style=Bold
 )
