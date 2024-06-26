@@ -4,13 +4,13 @@
   nixConfig = {
     substituters = [
       # Query the mirror of USTC first, and then the official cache.
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
     ];
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -25,11 +25,11 @@
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
-      url = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git";
+      url = "github:homebrew/homebrew-core";
       flake = false;
     };
     homebrew-cask = {
-      url = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git";
+      url = "github:homebrew/homebrew-cask";
       flake = false;
     };
   };
@@ -42,8 +42,7 @@
 
     nix-homebrew,
     homebrew-core,
-    homebrew-cask,
-    homebrew-bundle
+    homebrew-cask
   }:
   let
     configuration = { pkgs, ... }: {
@@ -75,6 +74,11 @@
       nixpkgs.hostPlatform = "x86_64-darwin";
     };
     username = "__USERNAME__";
+
+    specialArgs = inputs
+    // {
+      inherit username;
+    };
   in
   {
     # Build darwin flake using:
@@ -88,7 +92,6 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialArgs;
           home-manager.users.${username} = import ./homemanager;
         }
 
