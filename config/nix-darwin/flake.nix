@@ -4,17 +4,18 @@
   nixConfig = {
     substituters = [
       # Query the mirror of USTC first, and then the official cache.
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
     ];
   };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
     home-manager = {
@@ -22,14 +23,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
-      url = "github:homebrew/homebrew-core";
+      url = "https://mirrors.ustc.edu.cn/homebrew-core.git";
       flake = false;
     };
     homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
+      url = "https://mirrors.ustc.edu.cn/homebrew-cask.git";
       flake = false;
     };
   };
@@ -42,22 +42,37 @@
 
     nix-homebrew,
     homebrew-core,
-    homebrew-cask
+    homebrew-cask,
+    ...
   }:
   let
+    username = "__USERNAME__";
+    hostname = "__HOSTNAME__";
+    specialArgs =
+      inputs
+      // {
+        inherit username hostname;
+      };
+
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =[
-        pkgs.vim
-      ];
+      environment.systemPackages = with pkgs; [];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
       # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+        substituters = [
+          "https://mirrors.ustc.edu.cn/nix-channels/store"
+          "https://nix-community.cachix.org"
+        ];
+        trusted-users = [ username ];
+        builders-use-substitutes = true;
+      };
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       # programs.zsh.enable = true;  # default shell on catalina
@@ -72,12 +87,12 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "x86_64-darwin";
-    };
-    username = "__USERNAME__";
 
-    specialArgs = inputs
-    // {
-      inherit username;
+      # user
+      users.users."${username}"= {
+        home = "/Users/${username}";
+        description = username;
+      };
     };
   in
   {
@@ -95,7 +110,7 @@
           home-manager.users.${username} = import ./homemanager;
         }
 
-        modules/homebrew
+        # modules/homebrew
       ];
     };
 
