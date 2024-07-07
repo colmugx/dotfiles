@@ -18,9 +18,7 @@ in
     enable = true;
     onActivation.cleanup = "zap";
 
-    taps = [
-      "koekeishiya/formulae/yabai"
-    ];
+    taps = [];
     brews = [];
 
     casks = [

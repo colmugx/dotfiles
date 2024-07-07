@@ -4,12 +4,13 @@
   home.packages = with pkgs; [
     ripgrep
     jq
-
-    neovim
   ];
 
   programs = {
-    # modern vim
+    fish = {
+      enable = true;
+    };
+
     neovim = {
       enable = true;
       defaultEditor = true;
