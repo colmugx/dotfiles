@@ -1,4 +1,4 @@
-{ pkgs, lib, username, hostname, ... }: {
+{ self, pkgs, lib, username, hostname, ... }: {
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -7,10 +7,10 @@
   # Necessary for using flakes on this system.
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    substituters = lib.mkForce [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+    substituters = lib.mkForce [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
     trusted-users = [ username ];
     builders-use-substitutes = true;
-    auto-optimise-store = false;
+    auto-optimise-store = true;
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -32,9 +32,11 @@
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
+  security.pam.enableSudoTouchIdAuth = true;
+
   networking = {
-    hostName = hostName
-  }
+    hostName = hostname;
+  };
 
   # user
   users.users."${username}" = {
