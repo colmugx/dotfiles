@@ -50,7 +50,7 @@ bracket_defaults=(
 
 notification_defaults=(
   drawing=off
-  update_freq=120
+  update_freq=60
   updates=on
   background.color="$(getcolor white 25)"
   # background.height=16
