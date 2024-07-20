@@ -145,7 +145,11 @@ local Module = {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      -- add any options here
+      lsp = {
+        signature = {
+          enabled = false
+        }
+      }
     },
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,

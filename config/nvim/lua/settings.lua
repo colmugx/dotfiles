@@ -1,36 +1,41 @@
 local g = vim.g
-local conf = vim.o
-
-conf.number = true
-conf.relativenumber = true
+local o = vim.o
 
 vim.cmd [[syntax on]]
 
--- line
-conf.cursorline    = true
-conf.linebreak     = true
-conf.smartcase     = true
+o.number = true
+o.relativenumber = true
 
--- font
-conf.encoding      = "utf-8"
-conf.fileencodings = "utf-8,gbk,gb2312"
+-- preference
+o.termguicolors = true
+
+-- line
+o.cursorline    = true
+o.linebreak     = true
+o.smartcase     = true
+
+-- encoding
+o.encoding      = "utf-8"
+o.fileencodings = "utf-8,gbk,gb2312,gb18030"
 
 -- style
-conf.shiftwidth    = 2
-conf.tabstop       = 2
-conf.smarttab      = true
-conf.expandtab     = true
-conf.backspace     = "indent,eol,start"
-conf.autoindent    = true
-conf.conceallevel  = 0
+o.shiftwidth    = 2
+o.tabstop       = 2
+o.smarttab      = true
+o.expandtab     = true
+o.backspace     = "indent,eol,start"
+o.autoindent    = true
+o.conceallevel  = 0
+
+-- fold
+o.foldmethod = "expr"
+o.foldenable = true
 
 -- shortcuts
-conf.mouse         = "a"
+o.mouse         = "a"
 
 -- spell check
-conf.spelloptions  = "camel"
-conf.spelllang     = "en_gb,cjk"
-conf.spell         = true
-
-g.mapleader        = " "
-
+o.spelloptions  = "camel"
+o.spelllang     = "en_gb,cjk"
+o.spell         = true
+g.mapleader     = " "
