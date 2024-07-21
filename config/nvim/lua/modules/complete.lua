@@ -25,6 +25,7 @@ local symbol_map = {
   Operator = "󰆕",
   TypeParameter = "",
   Copilot = "",
+  Supermaven = "",
 }
 
 local Module = {
@@ -40,7 +41,9 @@ local Module = {
       "hrsh7th/cmp-vsnip",
       "hrsh7th/vim-vsnip",
       "rafamadriz/friendly-snippets",
-      "f3fora/cmp-spell"
+      "f3fora/cmp-spell",
+      -- copilot
+      "supermaven-inc/supermaven-nvim",
     },
     config = function()
       local cmp = require "cmp"
@@ -92,6 +95,9 @@ local Module = {
         },
 
         sources = cmp.config.sources {
+          {
+            name = "supermaven"
+          },
           {
             name = "vsnip"
           },
