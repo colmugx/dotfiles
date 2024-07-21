@@ -1,8 +1,6 @@
 echo "Now Installing Fonts..."
 echo "=============================="
 
-brew tap homebrew/cask-fonts
-
 list=(
     font-fira-code-nerd-font
     font-jetbrains-mono-nerd-font

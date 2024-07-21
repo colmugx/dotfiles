@@ -10,15 +10,11 @@ if test ! $(which brew); then
   echo "Installing homebrew..."
   export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
   export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+  export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+  export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
 
-  $(which ruby) -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://github.com/Homebrew/install/raw/HEAD/install.sh)"
 fi
-
-cd "$(brew --repo)"
-git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
-
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 
 brew update
 brew upgrade
@@ -29,7 +25,7 @@ echo "====================================="
 list=(
     fish
     neovim
-    tmux
+    zellij
     ripgrep
 )
 
@@ -45,9 +41,15 @@ echo "Now Installing Homebrew cask..."
 echo "====================================="
 
 casks=(
-    kitty
+    iina
+    devtoys
+    raycast
+    sf-symbols
+    wezterm
+    podman-desktop
     hammerspoon
     squirrel
+    visual-studio-code
 )
 
 for cask in "${casks[@]}"; do
