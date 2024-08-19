@@ -25,9 +25,9 @@ local Module = {
   {
     "simeji/winresizer",
     event = "VeryLazy",
-    config = function()
-      vim.g.winresizer_start_key = '<Leader>r'
-    end
+    keys = {
+      { "<Leader>r", "<cmd>WinResizer<cr>", desc = "Resize window" }
+    },
   },
 
   {
@@ -143,14 +143,10 @@ local Module = {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    enabled = true,
-    lazy = false,
+    lazy = true,
     init = function()
       vim.opt.wrap = false
       vim.opt.sidescrolloff = 36
-      vim.g.neominimap = {
-        auto_enable = true,
-      }
     end,
   },
 

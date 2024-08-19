@@ -2,19 +2,20 @@
 
 update() {
   WIDTH="dynamic"
-  if [ "$SELECTED" = "true" ]; then
-    WIDTH="0"
-  fi
+  FOCUSED_WORKSPACE="space.$(aerospace list-workspaces --focused)"
 
-  sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH
+  if [ "$FOCUSED_WORKSPACE" = "$NAME" ]; then
+    sketchybar --animate tanh 20 --set $NAME icon.highlight=true label.width="dynamic"
+  else
+    sketchybar --animate tanh 20 --set $NAME icon.highlight=false label.width=0
+  fi
 }
 
 mouse_clicked() {
   if [ "$BUTTON" = "right" ]; then
-    yabai -m space --destroy $SID
-    sketchybar --trigger space_change --trigger windows_on_spaces
+    echo ''
   else
-    yabai -m space --focus $SID 2>/dev/null
+    aerospace workspace ${NAME#*.}
   fi
 }
 
