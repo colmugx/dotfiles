@@ -1,42 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env lua
 
-source "$CONFIG_DIR/configs/styles.sh"
-
-ITEM_DIR="$CONFIG_DIR/items"
-PLUGIN_DIR="$CONFIG_DIR/plugins"
-
-# Unload the macOS on screen indicator overlay for volume change
-launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
-
-sketchybar --bar "${bar[@]}" --default "${defaults[@]}"
-
-# Left
-source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/mail.sh"
-# source "$ITEM_DIR/slack.sh"
-# source "$ITEM_DIR/github.sh"
-
-# Center
-# source "$ITEM_DIR/spotify.sh"
-source "$ITEM_DIR/front_app.sh"
-
-# Right
-source "$ITEM_DIR/control_center.sh"
-source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/battery.sh"
-source "$ITEM_DIR/wifi.sh"
-source "$ITEM_DIR/volume.sh"
-# source "$ITEM_DIR/cpu.sh"
-# source "$ITEM_DIR/media.sh"
-
-sketchybar --add bracket left_side apple.logo spaces \
-           --add bracket front_app_bracket front_app \
-           --set left_side "${bracket_defaults[@]}" \
-           --set front_app "${bracket_defaults[@]}" \
-           --add bracket right_side volume battery wifi calendar control_center \
-           --set right_side "${bracket_defaults[@]}"
-sketchybar --hotload on
-sketchybar --update
-
-echo "sketchybar configuation loaded.."
+require("helpers")
+require("init")

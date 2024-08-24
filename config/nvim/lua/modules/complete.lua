@@ -33,6 +33,18 @@ local Module = {
     "hrsh7th/nvim-cmp",
     event = "BufReadPost",
     dependencies = {
+      {
+        "folke/lazydev.nvim",
+        dependencies = {
+          { "Bilal2453/luvit-meta", lazy = true },
+        },
+        ft = "lua",
+        opts = {
+          library = {
+            { path = "luvit-meta/library", words = { "vim%.uv" } },
+          },
+        },
+      },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -95,6 +107,10 @@ local Module = {
         },
 
         sources = cmp.config.sources {
+          {
+            name = "lazydev",
+            group_index = 0,
+          },
           {
             name = "supermaven"
           },

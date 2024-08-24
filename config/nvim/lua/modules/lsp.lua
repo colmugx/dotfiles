@@ -81,7 +81,6 @@ local Module = {
         end
       })
 
-
       lsp_zero.on_attach(
         function(_, bufnr)
           local keymap = vim.keymap
