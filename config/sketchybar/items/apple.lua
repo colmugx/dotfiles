@@ -1,6 +1,5 @@
 local colors = require "configs.colors"
 local icons = require "configs.icons"
-local styles = require "configs.styles"
 
 local apple_logo = {
   icon = {
