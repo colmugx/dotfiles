@@ -18,8 +18,9 @@ local Module = {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
+    lazy = true,
     dependencies = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    config = {
+    opts = {
       kind = "split",
       integrations = {
         diffview = true
