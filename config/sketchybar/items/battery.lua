@@ -9,8 +9,9 @@ local battery_style = {
     },
   },
   label = {
+    padding_left = -1,
     font = {
-      size = 12.0,
+      size = 10.0,
     },
   },
   update_freq = 120,
