@@ -17,8 +17,8 @@ local Module = {
   },
   {
     "NeogitOrg/neogit",
+    event = "VeryLazy",
     cmd = "Neogit",
-    lazy = true,
     dependencies = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     opts = {
       kind = "split",

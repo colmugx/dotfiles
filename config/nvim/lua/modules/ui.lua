@@ -143,7 +143,7 @@ local Module = {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    lazy = true,
+    event = "VeryLazy",
     init = function()
       vim.opt.wrap = false
       vim.opt.sidescrolloff = 36
