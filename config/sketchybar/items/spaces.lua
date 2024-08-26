@@ -3,21 +3,24 @@ local colors = require "configs.colors"
 -- 添加事件监听
 sbar.add("event", "aerospace_workspace_change")
 
-local function get_focused_workspace()
-  local handle = io.popen("aerospace list-workspaces --focused")
-  if not handle then return {} end
-
-  local result = handle:read("*a"):gsub("^%s*(.-)%s*$", "%1")
-  handle:close()
-
-  return result
-end
-
 local spaces = {}
 
-sbar.exec("aerospace list-monitors", function(monitors)
+sbar.exec("aerospace list-monitors", function(monitors_result)
+  local monitors = {}
+  for line in monitors_result:gmatch("[^\r\n]+") do
+    local monitor = line:match("^%s*(%d+)")
+    if monitor then
+      table.insert(monitors, monitor)
+    end
+  end
+
   for _, monitor in ipairs(monitors) do
-    sbar.exec("aerospace list-workspaces --monitor " .. monitor, function(workspaces)
+    sbar.exec("aerospace list-workspaces --monitor " .. monitor, function(workspaces_result)
+      local workspaces = {}
+      for workspace in workspaces_result:gmatch("%S+") do
+        table.insert(workspaces, workspace)
+      end
+
       for _, sid in ipairs(workspaces) do
         local space = sbar.add("item", sid, {
           display = monitor,
@@ -31,7 +34,11 @@ sbar.exec("aerospace list-monitors", function(monitors)
           padding_right = 2,
           label = {
             padding_right = 20,
-            font = "sketchybar-app-font:Regular:16.0",
+            font = {
+              family = "sketchybar-app-font",
+              size = 16,
+              style = "Regular"
+            },
             background = {
               height = 26,
               drawing = true,
@@ -48,9 +55,9 @@ sbar.exec("aerospace list-monitors", function(monitors)
           sbar.exec("aerospace workspace " .. res.NAME)
         end)
 
-        space:subscribe({ "forced", "aerospace_workspace_change" }, function(res)
-          local focused = res.FOCUSED_WORKSPACE or get_focused_workspace()
-          local name = res.NAME
+        space:subscribe({ "aerospace_workspace_change" }, function(res)
+          local focused = res.FOCUSED_WORKSPACE or ""
+          local name = res.NAME or ""
 
           if focused == name then
             sbar.animate("tanh", 30, function()
@@ -91,5 +98,15 @@ local spaces_style = {
 }
 
 local spaces_perf = sbar.add("bracket", spaces, spaces_style)
+
+spaces_perf:subscribe({ "forced" }, function()
+  sbar.exec("aerospace list-workspaces --focused", function(result)
+    local focused = result:match("^%s*(.-)%s*$")
+
+    sbar.trigger("aerospace_workspace_change", {
+      FOCUSED_WORKSPACE = focused,
+    })
+  end)
+end)
 
 return spaces_perf

@@ -6,8 +6,7 @@ sbar.begin_config()
   sbar.default(styles.defaults)
   require "items"
   sbar.hotload(true)
-  print "sketchybar configuation loaded.."
 sbar.end_config()
 
+print "sketchybar configuation loaded.."
 sbar.event_loop()
-
