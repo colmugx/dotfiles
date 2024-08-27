@@ -32,7 +32,7 @@ local Module = {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "<leader><space>f",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "<leader><space>f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     },
   },
 
@@ -40,6 +40,17 @@ local Module = {
 
   'mg979/vim-visual-multi',
 
+  {
+    'Wansmer/symbol-usage.nvim',
+    event = 'BufReadPre',
+    opts = {},
+  },
+
+  {
+    'sontungexpt/better-diagnostic-virtual-text',
+    event = "LspAttach",
+    opts = {}
+  },
 }
 
 return Module
