@@ -44,7 +44,7 @@
 (use-package all-the-icons)
 
 ;; font
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font Mono 14")
+(set-face-attribute 'default nil :font "Maple Mono 14")
 ;; Setting Chinese Font
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)

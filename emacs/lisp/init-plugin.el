@@ -1,6 +1,6 @@
-(setq package-archives '(("melpa" . "http://1.15.88.122/melpa/")
-       ("org" . "http://1.15.88.122/org/")
-       ("gnu" . "http://1.15.88.122/gnu/")))
+(setq package-archives '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+                         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 (unless (bound-and-true-p package--initialized)
   (setq package-enable-at-startup nil)
