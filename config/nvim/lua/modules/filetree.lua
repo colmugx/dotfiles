@@ -2,21 +2,22 @@ local Module = { {
   "nvim-treesitter/nvim-treesitter",
   event = "BufReadPost",
   run = ":TSUpdate",
-  config = {
-    ensure_installed = "maintained",
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    autotag = {
-      enable = true,
-    },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
-    },
-  }
+  config = function()
+    require 'nvim-treesitter.configs'.setup {
+      ensure_installed = { 'astro', 'lua', 'typescript', 'javascript', 'tsx', 'markdown', 'markdown_inline' },
+      highlight = {
+        enable = true,
+      },
+      autotag = {
+        enable = true,
+      },
+      rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
+      },
+    }
+  end
 },
   {
     "nvim-neo-tree/neo-tree.nvim",

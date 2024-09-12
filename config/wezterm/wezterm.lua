@@ -8,6 +8,7 @@ return {
   default_cursor_style = "SteadyBlock",
 
   font = wezterm.font_with_fallback {
+    "Maple Mono",
     "JetBrainsMono Nerd Font Mono",
     "PingFang SC"
   },
