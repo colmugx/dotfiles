@@ -2,8 +2,8 @@ echo "Now Installing Fonts..."
 echo "=============================="
 
 list=(
-    font-fira-code-nerd-font
     font-jetbrains-mono-nerd-font
+    font-maple
 )
 
 for item in "${list[@]}"; do
