@@ -1,19 +1,18 @@
 local wezterm = require "wezterm"
 
-require("status-bar").setup()
-
 return {
   color_scheme = "nord",
   window_decorations = "RESIZE",
   default_cursor_style = "SteadyBlock",
 
   font = wezterm.font_with_fallback {
-    "Maple Mono",
+    "Inconsolata Nerd Font Mono",
+    "UbuntuMono Nerd Font Mono",
     "JetBrainsMono Nerd Font Mono",
     "PingFang SC"
   },
 
-  font_size = 13.0,
+  font_size = 14,
 
   window_padding = {
     top = 0,
