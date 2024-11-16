@@ -22,10 +22,22 @@ local Module = {
       mason_null_ls.setup({
         automatic_installation = true,
         ensure_installed = {
-          "eslint",
+          "biome",
+          "eslint_d",
           "prettier",
         },
       })
+
+      null_ls.builtins.formatting.biome.with {
+        args = {
+          'check',
+          '--apply-unsafe',
+          '--formatter-enabled=true',
+          '--organize-imports-enabled=true',
+          '--skip-errors',
+          '$FILENAME',
+        },
+      }
 
       null_ls.setup {
         sources = {
@@ -73,6 +85,7 @@ local Module = {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local lsp = require "lspconfig"
+
       mason_lspconfig.setup_handlers({
         function(svr)
           lsp[svr].setup({
@@ -80,6 +93,8 @@ local Module = {
           })
         end
       })
+
+      lsp.basedpyright.setup {}
 
       lsp_zero.on_attach(
         function(_, bufnr)
